@@ -1,66 +1,67 @@
-/* 1. De Reset: Haalt de standaard witte randjes van de browser weg */
+/* 1. DE RESET: Zorgt dat de website strak tegen de randen van je scherm begint */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Zorgt dat padding de breedte niet verpest */
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif; /* Het strakke lettertype uit je HTML */
     background-color: #ffffff;
 }
 
-/* 2. De Navbar: Zorgt voor de verdeling over de breedte */
+/* 2. DE NAVBAR: De grote balk bovenin */
 .navbar {
-    display: flex;
-    justify-content: space-between; /* Links, midden en rechts worden verdeeld */
-    align-items: center;
-    padding: 0 5%;
-    height: 80px;
+    display: flex; /* Activeert 'Flexbox': de kamers gaan naast elkaar staan */
+    justify-content: space-between; /* Duwt links en rechts naar de buitenkant */
+    align-items: center; /* Zet alles netjes verticaal in het midden */
+    padding: 0 5%; /* Ruimte aan de linker- en rechterkant */
+    height: 80px; /* De hoogte van je menubalk */
     background-color: white;
-    border-bottom: 1px solid #eee; /* Een subtiel grijs lijntje onder de balk */
-    position: sticky;
+    border-bottom: 1px solid #eeeeee; /* Een heel dun grijs lijntje voor de luxe look */
+    position: sticky; /* Zorgt dat de balk bovenin blijft staan als je scrollt */
     top: 0;
-    z-index: 1000;
+    z-index: 1000; /* Zorgt dat de balk altijd bovenop andere foto's ligt */
 }
 
-/* 3. De Hamburger: Maakt de 3 streepjes zichtbaar */
+/* 3. DE VERDELING: Zorgt dat het logo écht in het midden staat */
+.nav-left, .nav-right {
+    flex: 1; /* Beide zijkanten krijgen evenveel ruimte */
+}
+
+.nav-center {
+    flex: 2; /* De middelste kamer krijgt meer ruimte voor het logo */
+    text-align: center;
+}
+
+.nav-right {
+    text-align: right; /* Zet de CART tekst tegen de rechterkant */
+    font-weight: 900;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+/* 4. HET LOGO: De styling voor de naam VELOCITY */
+.logo {
+    font-family: 'Syncopate', sans-serif; /* Het brede, stoere lettertype */
+    font-size: 1.4rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+
+/* 5. DE HAMBURGER: De 3 streepjes zichtbaar maken */
 .hamburger {
-    width: 25px;
+    width: 25px; /* Hoe breed de streepjes zijn */
     cursor: pointer;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Zet de streepjes onder elkaar */
     gap: 5px; /* De ruimte tussen de streepjes */
 }
 
 .hamburger span {
     display: block;
     width: 100%;
-    height: 2px;
-    background-color: black; /* Kleur van de streepjes */
-    transition: 0.3s;
-}
-
-/* 4. Het Logo: Gebruikt het stoere lettertype */
-.logo {
-    font-family: 'Syncopate', sans-serif;
-    font-size: 1.2rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-}
-
-/* Zorgt dat het logo exact in het midden blijft */
-.nav-left, .nav-right {
-    flex: 1; 
-}
-
-.nav-center {
-    flex: 2;
-    text-align: center;
-}
-
-.nav-right {
-    text-align: right;
-    font-weight: 900;
-    font-size: 0.8rem;
+    height: 2px; /* De dikte van de streepjes */
+    background-color: black; /* De kleur van de streepjes */
+    transition: 0.3s; /* Zorgt voor een zachte animatie later */
 }
