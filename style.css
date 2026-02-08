@@ -1,30 +1,66 @@
-/* 1. De Grote Schoonmaak (Reset) */
+/* 1. De Reset: Haalt de standaard witte randjes van de browser weg */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 2. De Balk (Navbar) */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    background-color: white;
-    border-bottom: 1px solid #eee;
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
 }
 
-/* 3. De Hamburger (De 3 streepjes) */
+/* 2. De Navbar: Zorgt voor de verdeling over de breedte */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Links, midden en rechts worden verdeeld */
+    align-items: center;
+    padding: 0 5%;
+    height: 80px;
+    background-color: white;
+    border-bottom: 1px solid #eee; /* Een subtiel grijs lijntje onder de balk */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* 3. De Hamburger: Maakt de 3 streepjes zichtbaar */
 .hamburger {
-    width: 30px;
+    width: 25px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* De ruimte tussen de streepjes */
 }
 
 .hamburger span {
     display: block;
     width: 100%;
     height: 2px;
-    background-color: black; /* HIER WORDEN ZE ZICHTBAAR */
-    margin: 5px 0;
+    background-color: black; /* Kleur van de streepjes */
+    transition: 0.3s;
+}
+
+/* 4. Het Logo: Gebruikt het stoere lettertype */
+.logo {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* Zorgt dat het logo exact in het midden blijft */
+.nav-left, .nav-right {
+    flex: 1; 
+}
+
+.nav-center {
+    flex: 2;
+    text-align: center;
+}
+
+.nav-right {
+    text-align: right;
+    font-weight: 900;
+    font-size: 0.8rem;
 }
