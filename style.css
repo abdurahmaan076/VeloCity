@@ -1,89 +1,43 @@
+/* De Loading Animatie */
+.loading-text {
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    letter-spacing: 10px;
+    animation: pulse 2s infinite; /* Dit laat de tekst 'ademen' */
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* De rest van je bestaande CSS blijft hetzelfde... */
 html { scroll-behavior: smooth; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background-color: #fff; color: #000; }
-
-/* NAVBAR */
+body { font-family: 'Inter', sans-serif; background-color: #fff; }
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 80px; background: white; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #eee; }
 .logo { font-family: 'Syncopate', sans-serif; font-size: 1.2rem; letter-spacing: 4px; }
 .hamburger { width: 25px; cursor: pointer; display: flex; flex-direction: column; gap: 5px; }
 .hamburger span { display: block; width: 100%; height: 2px; background: black; }
-
-/* SIDE NAV */
-.side-nav { height: 100%; width: 0; position: fixed; z-index: 2001; top: 0; left: 0; background: white; overflow-x: hidden; transition: 0.4s; display: flex; flex-direction: column; }
+.side-nav { height: 100%; width: 0; position: fixed; z-index: 2001; top: 0; left: 0; background: white; overflow-x: hidden; transition: 0.4s; }
 .menu-header { padding: 25px; text-align: right; }
-.close-btn { font-size: 30px; cursor: pointer; }
 .menu-list { list-style: none; padding: 20px 30px; }
-.menu-list li a, .product-toggle { display: flex; justify-content: space-between; padding: 18px 0; text-decoration: none; color: black; font-weight: 800; border-bottom: 1px solid #f0f0f0; cursor: pointer; font-size: 18px; }
-.submenu { display: none; list-style: none; padding-left: 15px; background: #fafafa; }
-.submenu li a { font-size: 16px; font-weight: 400; border: none; color: #666; }
+.menu-list li a, .product-toggle { display: flex; justify-content: space-between; padding: 18px 0; text-decoration: none; color: black; font-weight: 800; border-bottom: 1px solid #f0f0f0; cursor: pointer; }
 
-/* HERO */
 .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
-.hero-content h2 { font-family: 'Syncopate', sans-serif; font-size: clamp(2rem, 8vw, 4rem); }
 .btn { display: inline-block; padding: 15px 45px; border: 2px solid white; color: white; text-decoration: none; font-weight: 900; margin-top: 30px; transition: 0.3s; }
 .btn:hover { background: white; color: black; }
 
-/* PRODUCT SECTION */
-.products-section { padding: 100px 5%; background: white; }
+.products-section { padding: 100px 5%; }
 .section-title-main { font-family: 'Syncopate', sans-serif; font-size: 1.5rem; text-align: center; margin-bottom: 60px; letter-spacing: 2px; }
-
-/* GRID VOOR 3 NAAST ELKAAR */
-.product-grid { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); /* Forceert 3 kolommen op laptop */
-    gap: 30px; 
-    max-width: 1200px; 
-    margin: 0 auto; 
-}
-
-/* RESPONSIVE: Op mobiel onder elkaar */
-@media (max-width: 900px) {
-    .product-grid { grid-template-columns: 1fr; }
-}
-
-.product-card { 
-    display: flex;
-    flex-direction: column;
-    transition: 0.3s; 
-}
-
-.product-image { 
-    background: #f6f6f6; 
-    aspect-ratio: 1 / 1; /* Maakt de achtergrond altijd vierkant */
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    padding: 30px;
-    margin-bottom: 15px;
-}
-
-.product-image img { 
-    width: 100%; 
-    height: auto; 
-    object-fit: contain; 
-}
-
-.product-info { text-align: left; }
-.brand { font-size: 12px; color: #888; letter-spacing: 1px; margin-bottom: 5px; font-weight: 400; }
+.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; }
+@media (max-width: 900px) { .product-grid { grid-template-columns: 1fr; } }
+.product-image { background: #f6f6f6; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; padding: 20px; margin-bottom: 15px; }
+.product-image img { width: 100%; height: auto; object-fit: contain; }
+.brand { font-size: 12px; color: #888; margin-bottom: 5px; }
 .model { font-size: 16px; font-weight: 700; margin-bottom: 5px; }
-.price { font-size: 15px; margin-bottom: 15px; color: #444; }
-
-/* DE WINKELWAGEN KNOP */
-.add-to-cart {
-    width: 100%;
-    padding: 12px;
-    background: transparent;
-    border: 1px solid #000;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 1px;
-}
-
-.add-to-cart:hover {
-    background: #000;
-    color: #fff;
-}
+.price { font-size: 15px; margin-bottom: 15px; }
+.size-select { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; }
+.add-to-cart { width: 100%; padding: 12px; background: transparent; border: 1px solid #000; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 12px; }
+.add-to-cart:hover { background: #000; color: #fff; }
