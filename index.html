@@ -13,7 +13,6 @@
         <div class="menu-header">
             <span class="close-btn" onclick="toggleMenu()">&times;</span>
         </div>
-        
         <div class="menu-section">
             <ul class="menu-list">
                 <li><a href="#">Home</a></li>
@@ -28,19 +27,6 @@
                 </li>
                 <li><a href="#">Contact</a></li>
             </ul>
-        </div>
-
-        <div class="menu-section footer-section">
-            <h3 class="section-title">Hulp & advies</h3>
-            <div class="contact-item">
-                <div class="icon-circle blue">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                </div>
-                <div>
-                    <p class="contact-label">Bel ons</p>
-                    <p class="contact-sub">0342-421000</p>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -65,15 +51,46 @@
     <section id="best-verkocht" class="products-section">
         <div class="container">
             <h2 class="section-title-main">Best verkocht</h2>
-            <div class="product-grid-placeholder">
-                <p>Hier komen binnenkort de best verkochte sneakers...</p>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="download.jpeg" alt="Asics GEL-NYC">
+                    </div>
+                    <div class="product-info">
+                        <h3>ASICS</h3>
+                        <p>GEL-NYC Graphite Grey</p>
+                        <span class="price">€160</span>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="shopping.webp" alt="Nike P-6000">
+                    </div>
+                    <div class="product-info">
+                        <h3>NIKE</h3>
+                        <p>P-6000 Black/Chrome</p>
+                        <span class="price">€110</span>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="download (1).jpeg" alt="New Balance 9060">
+                    </div>
+                    <div class="product-info">
+                        <h3>NEW BALANCE</h3>
+                        <p>9060 'Rain Cloud'</p>
+                        <span class="price">€180</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <script>
         let menuOpen = false;
-
         function toggleMenu() {
             const menu = document.getElementById("side-menu");
             if (!menuOpen) {
@@ -82,16 +99,13 @@
             } else {
                 menu.style.width = "0";
                 menuOpen = false;
-                // Sluit de lijst en zet pijltje terug
                 document.getElementById("brand-list").style.display = "none";
                 document.getElementById("arrow").style.transform = "rotate(0deg)";
             }
         }
-
         function toggleProducts() {
             const list = document.getElementById("brand-list");
             const arrow = document.getElementById("arrow");
-            // Check of de lijst nu verborgen is of getoond wordt
             if (list.style.display === "block") {
                 list.style.display = "none";
                 arrow.style.transform = "rotate(0deg)";
