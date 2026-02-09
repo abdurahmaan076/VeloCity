@@ -37,12 +37,12 @@
             </div>
         </div>
         <div class="nav-center"><h1 class="logo">VELOCITY</h1></div>
-        <div class="nav-right"><span class="cart-icon">CART (0)</span></div>
+        <div class="nav-right"><span class="cart-icon" id="cart-count">CART (0)</span></div>
     </nav>
 
     <header class="hero">
         <div class="hero-content">
-            <h2>RELEASE 2026</h2>
+            <h2>LOADING......</h2>
             <p>Ontdek de nieuwe Velocity collectie.</p>
             <a href="#best-verkocht" class="btn">SHOP NU</a>
         </div>
@@ -61,7 +61,13 @@
                         <h3 class="brand">ASICS</h3>
                         <p class="model">GEL-NYC Graphite Grey</p>
                         <p class="price">€160,00</p>
-                        <button class="add-to-cart" onclick="alert('Toegevoegd aan winkelwagen!')">In winkelwagen</button>
+                        
+                        <select class="size-select">
+                            <option value="" disabled selected>Kies maat</option>
+                            <option>36</option><option>37</option><option>38</option><option>39</option>
+                            <option>40</option><option>41</option><option>42</option><option>43</option><option>44</option>
+                        </select>
+                        <button class="add-to-cart" onclick="addToCart()">In winkelwagen</button>
                     </div>
                 </div>
 
@@ -73,7 +79,13 @@
                         <h3 class="brand">NIKE</h3>
                         <p class="model">P-6000 Black/Chrome</p>
                         <p class="price">€110,00</p>
-                        <button class="add-to-cart" onclick="alert('Toegevoegd aan winkelwagen!')">In winkelwagen</button>
+
+                        <select class="size-select">
+                            <option value="" disabled selected>Kies maat</option>
+                            <option>36</option><option>37</option><option>38</option><option>39</option>
+                            <option>40</option><option>41</option><option>42</option><option>43</option><option>44</option>
+                        </select>
+                        <button class="add-to-cart" onclick="addToCart()">In winkelwagen</button>
                     </div>
                 </div>
 
@@ -85,7 +97,13 @@
                         <h3 class="brand">NEW BALANCE</h3>
                         <p class="model">9060 'Rain Cloud'</p>
                         <p class="price">€180,00</p>
-                        <button class="add-to-cart" onclick="alert('Toegevoegd aan winkelwagen!')">In winkelwagen</button>
+
+                        <select class="size-select">
+                            <option value="" disabled selected>Kies maat</option>
+                            <option>36</option><option>37</option><option>38</option><option>39</option>
+                            <option>40</option><option>41</option><option>42</option><option>43</option><option>44</option>
+                        </select>
+                        <button class="add-to-cart" onclick="addToCart()">In winkelwagen</button>
                     </div>
                 </div>
             </div>
@@ -94,6 +112,8 @@
 
     <script>
         let menuOpen = false;
+        let cartItems = 0;
+
         function toggleMenu() {
             const menu = document.getElementById("side-menu");
             if (!menuOpen) {
@@ -102,20 +122,18 @@
             } else {
                 menu.style.width = "0";
                 menuOpen = false;
-                document.getElementById("brand-list").style.display = "none";
-                document.getElementById("arrow").style.transform = "rotate(0deg)";
             }
         }
+
         function toggleProducts() {
             const list = document.getElementById("brand-list");
-            const arrow = document.getElementById("arrow");
-            if (list.style.display === "block") {
-                list.style.display = "none";
-                arrow.style.transform = "rotate(0deg)";
-            } else {
-                list.style.display = "block";
-                arrow.style.transform = "rotate(180deg)";
-            }
+            list.style.display = (list.style.display === "block") ? "none" : "block";
+        }
+
+        function addToCart() {
+            cartItems++;
+            document.getElementById("cart-count").innerText = `CART (${cartItems})`;
+            alert("Schoen toegevoegd aan je winkelwagen!");
         }
     </script>
 </body>
