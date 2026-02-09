@@ -1,6 +1,6 @@
 html { scroll-behavior: smooth; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background-color: #fff; }
+body { font-family: 'Inter', sans-serif; background-color: #fff; color: #000; }
 
 /* NAVBAR */
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 80px; background: white; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #eee; }
@@ -9,7 +9,7 @@ body { font-family: 'Inter', sans-serif; background-color: #fff; }
 .hamburger span { display: block; width: 100%; height: 2px; background: black; }
 
 /* SIDE NAV */
-.side-nav { height: 100%; width: 0; position: fixed; z-index: 2001; top: 0; left: 0; background: white; overflow-x: hidden; transition: 0.4s; display: flex; flex-direction: column; box-shadow: 5px 0 15px rgba(0,0,0,0.1); }
+.side-nav { height: 100%; width: 0; position: fixed; z-index: 2001; top: 0; left: 0; background: white; overflow-x: hidden; transition: 0.4s; display: flex; flex-direction: column; }
 .menu-header { padding: 25px; text-align: right; }
 .close-btn { font-size: 30px; cursor: pointer; }
 .menu-list { list-style: none; padding: 20px 30px; }
@@ -20,43 +20,70 @@ body { font-family: 'Inter', sans-serif; background-color: #fff; }
 /* HERO */
 .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
 .hero-content h2 { font-family: 'Syncopate', sans-serif; font-size: clamp(2rem, 8vw, 4rem); }
-.btn { display: inline-block; padding: 15px 45px; background: white; color: black; text-decoration: none; font-weight: 900; margin-top: 30px; transition: 0.3s; }
-.btn:hover { background: #eee; transform: scale(1.05); }
+.btn { display: inline-block; padding: 15px 45px; border: 2px solid white; color: white; text-decoration: none; font-weight: 900; margin-top: 30px; transition: 0.3s; }
+.btn:hover { background: white; color: black; }
 
 /* PRODUCT SECTION */
-.products-section { padding: 80px 5%; background: white; }
-.section-title-main { font-family: 'Syncopate', sans-serif; font-size: 1.8rem; text-align: center; margin-bottom: 50px; letter-spacing: 2px; }
+.products-section { padding: 100px 5%; background: white; }
+.section-title-main { font-family: 'Syncopate', sans-serif; font-size: 1.5rem; text-align: center; margin-bottom: 60px; letter-spacing: 2px; }
 
+/* GRID VOOR 3 NAAST ELKAAR */
 .product-grid { 
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 40px; 
+    grid-template-columns: repeat(3, 1fr); /* Forceert 3 kolommen op laptop */
+    gap: 30px; 
     max-width: 1200px; 
     margin: 0 auto; 
 }
 
+/* RESPONSIVE: Op mobiel onder elkaar */
+@media (max-width: 900px) {
+    .product-grid { grid-template-columns: 1fr; }
+}
+
 .product-card { 
-    background: #fff; 
+    display: flex;
+    flex-direction: column;
     transition: 0.3s; 
 }
 
 .product-image { 
     background: #f6f6f6; 
-    height: 350px; 
+    aspect-ratio: 1 / 1; /* Maakt de achtergrond altijd vierkant */
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    padding: 20px;
-    border-radius: 4px;
-    margin-bottom: 20px;
+    padding: 30px;
+    margin-bottom: 15px;
 }
 
 .product-image img { 
-    max-width: 100%; 
-    max-height: 100%; 
+    width: 100%; 
+    height: auto; 
     object-fit: contain; 
 }
 
-.product-info h3 { font-size: 12px; color: #999; letter-spacing: 1px; margin-bottom: 8px; font-weight: 400; }
-.product-info p { font-size: 18px; font-weight: 700; color: #000; margin-bottom: 8px; }
-.price { font-size: 16px; font-weight: 400; color: #333; }
+.product-info { text-align: left; }
+.brand { font-size: 12px; color: #888; letter-spacing: 1px; margin-bottom: 5px; font-weight: 400; }
+.model { font-size: 16px; font-weight: 700; margin-bottom: 5px; }
+.price { font-size: 15px; margin-bottom: 15px; color: #444; }
+
+/* DE WINKELWAGEN KNOP */
+.add-to-cart {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #000;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.add-to-cart:hover {
+    background: #000;
+    color: #fff;
+}
