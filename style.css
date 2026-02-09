@@ -1,4 +1,4 @@
-/* 1. RESET: Alles op nul zetten */
+/* 1. RESET */
 * {
     margin: 0;
     padding: 0;
@@ -7,11 +7,10 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #ffffff;
-    color: #000;
+    overflow-x: hidden;
 }
 
-/* 2. NAVBAR: De witte balk bovenin */
+/* 2. NAVBAR */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -19,11 +18,11 @@ body {
     padding: 0 5%;
     height: 80px;
     background-color: white;
-    border-bottom: 1px solid #eee;
-    position: fixed; /* Blijft altijd bovenin staan */
+    position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000; /* Zorgt dat de balk bovenop de foto ligt */
+    z-index: 1000;
+    border-bottom: 1px solid #eee;
 }
 
 .nav-left, .nav-right { flex: 1; }
@@ -33,16 +32,11 @@ body {
     font-family: 'Syncopate', sans-serif;
     font-size: 1.4rem;
     letter-spacing: 6px;
-    text-transform: uppercase;
 }
 
-.nav-right {
-    text-align: right;
-    font-weight: 900;
-    font-size: 0.8rem;
-}
+.nav-right { text-align: right; font-weight: 900; font-size: 0.8rem; }
 
-/* 3. HAMBURGER: De streepjes */
+/* 3. HAMBURGER */
 .hamburger {
     width: 25px;
     cursor: pointer;
@@ -58,35 +52,56 @@ body {
     background-color: black;
 }
 
-/* 4. HERO: De grote foto */
+/* 4. SIDE NAV (HET MENU) */
+.side-nav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+}
+
+.menu-header { padding: 20px; text-align: right; }
+.close-btn { font-size: 30px; cursor: pointer; padding-right: 10px; }
+
+.menu-links, .menu-footer { padding: 20px 40px; }
+.menu-links h3, .menu-footer h3 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 0.7rem;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.side-nav a {
+    display: block;
+    padding: 10px 0;
+    text-decoration: none;
+    color: black;
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+/* 5. HERO (De Foto) */
 .hero {
-    height: 100vh; /* Vult het hele scherm */
+    height: 100vh;
     width: 100%;
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                       url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070');
     background-size: cover;
     background-position: center;
     display: flex;
-    align-items: center; /* Verticaal midden */
-    justify-content: center; /* Horizontaal midden */
-    text-align: center;
+    align-items: center;
+    justify-content: center;
     color: white;
+    text-align: center;
 }
 
-/* 5. TEKST OP DE FOTO */
-.hero-content h2 {
-    font-family: 'Syncopate', sans-serif;
-    font-size: clamp(2rem, 8vw, 4rem); /* Werkt goed op mobiel en laptop */
-    margin-bottom: 10px;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    letter-spacing: 2px;
-}
-
-/* 6. KNOP */
+.hero-content h2 { font-family: 'Syncopate', sans-serif; font-size: 4rem; margin-bottom: 10px; }
 .btn {
     display: inline-block;
     padding: 15px 40px;
@@ -94,71 +109,5 @@ body {
     color: black;
     text-decoration: none;
     font-weight: 900;
-    letter-spacing: 2px;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background-color: black;
-    color: white;
-}
-/* --- 7. SIDE MENU (HET UITSCHUIFMENU) --- */
-.side-nav {
-    height: 100%;
-    width: 0;           /* Begint onzichtbaar (breedte 0) */
-    position: fixed;    /* Blijft op z'n plek staan */
-    z-index: 2000;      /* Staat BOVEN de navbar (die heeft 1000) */
-    top: 0;
-    left: 0;
-    background-color: white;
-    overflow-x: hidden; /* Verbergt tekst als het menu dicht is */
-    transition: 0.5s;   /* Dit maakt het schuiven soepel */
-    padding-top: 60px;
-    box-shadow: 5px 0 15px rgba(0,0,0,0.1); /* Zacht schaduwtje aan de rechterkant */
-}
-
-/* Het kruisje om te sluiten */
-.menu-header {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-}
-
-.close-btn {
-    font-size: 30px;
-    cursor: pointer;
-    font-family: Arial, sans-serif;
-}
-
-/* De koppen zoals 'Categorie' en 'Hulp & Advies' */
-.menu-links h3, .menu-footer h3 {
-    font-family: 'Syncopate', sans-serif;
-    font-size: 0.7rem;
-    color: #888;
-    margin-bottom: 15px;
-    padding-left: 30px;
-    letter-spacing: 2px;
-}
-
-/* De klikbare links in het menu */
-.side-nav a {
-    padding: 10px 30px;
-    text-decoration: none;
-    font-size: 1.1rem;
-    color: black;
-    display: block;
-    font-weight: 900;
-    transition: 0.2s;
-}
-
-.side-nav a:hover {
-    background-color: #f9f9f9; /* Lichtgrijs als je eroverheen gaat */
-    padding-left: 40px;        /* Schuift een stukje op bij hover */
-}
-
-/* Extra ruimte tussen de twee blokken */
-.menu-footer {
-    margin-top: 40px;
-    border-top: 1px solid #eee;
-    padding-top: 30px;
+    margin-top: 20px;
 }
