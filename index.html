@@ -10,6 +10,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <body>
+
+    <div id="side-menu" class="side-nav">
+        <div class="menu-header">
+            <span class="close-btn" onclick="toggleMenu()">&times;</span>
+        </div>
+        
+        <div class="menu-links">
+            <h3>Categorie</h3>
+            <a href="#">Jordan</a>
+            <a href="#">Nike Air Max</a>
+            <a href="#">Adidas Yeezy</a>
+            <a href="#">Nieuwe Releases</a>
+        </div>
+
+        <div class="menu-footer">
+            <h3>Hulp & advies</h3>
+            <a href="#">Veelgestelde vragen</a>
+            <a href="#">Start een chat</a>
+            <a href="#">Bel ons</a>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        ```
+
+
+
+---
+
+### Vergeet de CSS en JS niet!
+Alleen de HTML plakken is niet genoeg, want dan zie je de tekst gewoon groot op je scherm staan zonder dat het schuift.
+
+1.  **CSS:** Plak de `.side-nav` code (uit mijn vorige bericht) helemaal onderaan je `style.css`.
+2.  **JavaScript:** Zorg dat de `toggleMenu()` functie in je `script.js` staat.
+
+**Hoe je kunt testen of het klopt:**
+Als je de CSS goed hebt toegevoegd, moet het menu **onzichtbaar** zijn zodra je de pagina ververst. Pas als je op de hamburger klikt, moet hij tevoorschijn komen.
+
+**Lukt het om het op de juiste plek tussen de `<body>` en de `<nav>` te krijgen?**
 
     <nav class="navbar">
         <div class="nav-left">
