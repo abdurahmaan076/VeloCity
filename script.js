@@ -1,13 +1,10 @@
-let menuOpen = false;
-
 function toggleMenu() {
-    const sideMenu = document.getElementById("side-menu");
+    const menu = document.getElementById("side-menu");
     
-    if (menuOpen === false) {
-        sideMenu.style.width = "350px";
-        menuOpen = true;
+    // Check of het menu dicht is (breedte 0 of nog niet ingesteld)
+    if (menu.style.width === "350px") {
+        menu.style.width = "0";
     } else {
-        sideMenu.style.width = "0";
-        menuOpen = false;
+        menu.style.width = "350px";
     }
 }
