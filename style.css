@@ -1,4 +1,4 @@
-/* 1. DE RESET: Zorgt dat alles strak tegen de randen van het scherm staat */
+/* 1. Reset */
 * {
     margin: 0;
     padding: 0;
@@ -8,10 +8,9 @@
 body {
     font-family: 'Inter', sans-serif;
     background-color: #ffffff;
-    overflow-x: hidden; /* Voorkomt dat je naar links/rechts kunt scrollen */
 }
 
-/* 2. DE NAVBAR: De witte balk bovenin */
+/* 2. Navbar Styling */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -19,23 +18,16 @@ body {
     padding: 0 5%;
     height: 80px;
     background-color: white;
-    border-bottom: 1px solid #eeeeee;
-    position: sticky;
+    border-bottom: 1px solid #eee;
+    position: fixed; /* Zorgt dat de balk bovenop de foto blijft zweven */
+    width: 100%;
     top: 0;
     z-index: 1000;
 }
 
-/* De verdeling van de 3 kamers in de navbar */
-.nav-left, .nav-right {
-    flex: 1;
-}
+.nav-left, .nav-right { flex: 1; }
+.nav-center { flex: 2; text-align: center; }
 
-.nav-center {
-    flex: 2;
-    text-align: center;
-}
-
-/* 3. HET LOGO: De stijl voor VELOCITY */
 .logo {
     font-family: 'Syncopate', sans-serif;
     font-size: 1.4rem;
@@ -49,7 +41,7 @@ body {
     font-size: 0.8rem;
 }
 
-/* 4. DE HAMBURGER: De 3 zwarte streepjes */
+/* 3. Hamburger Menu */
 .hamburger {
     width: 25px;
     cursor: pointer;
@@ -63,34 +55,33 @@ body {
     width: 100%;
     height: 2px;
     background-color: black;
-    transition: 0.3s;
 }
 
-/* 5. DE HERO: De grote foto die het scherm vult */
+/* 4. HERO SECTIE (De Foto) */
 .hero {
-    height: 100vh;
+    height: 100vh; /* Vult het hele scherm */
     width: 100%;
-    /* De achtergrondfoto met een donker laagje erover voor leesbaarheid */
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+    /* De foto met een donker laagje erover */
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                       url('https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&q=80&w=2070');
     background-size: cover;
     background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; /* Maakt centreren mogelijk */
+    align-items: center; /* Zet tekst in het midden (verticaal) */
+    justify-content: center; /* Zet tekst in het midden (horizontaal) */
     color: white;
     text-align: center;
 }
 
-/* 6. TEKST EN KNOP OP DE FOTO */
+/* 5. Tekst en Knop op de foto */
 .hero-content h2 {
     font-family: 'Syncopate', sans-serif;
-    font-size: 3.5rem;
+    font-size: 4rem;
     margin-bottom: 10px;
 }
 
 .hero-content p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 30px;
     letter-spacing: 2px;
 }
@@ -103,11 +94,10 @@ body {
     text-decoration: none;
     font-weight: 900;
     letter-spacing: 2px;
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 .btn:hover {
     background-color: black;
     color: white;
-    transform: scale(1.05);
 }
