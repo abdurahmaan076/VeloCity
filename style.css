@@ -1,4 +1,4 @@
-/* 1. Reset */
+/* 1. RESET: Alles op nul zetten */
 * {
     margin: 0;
     padding: 0;
@@ -8,9 +8,10 @@
 body {
     font-family: 'Inter', sans-serif;
     background-color: #ffffff;
+    color: #000;
 }
 
-/* 2. Navbar Styling */
+/* 2. NAVBAR: De witte balk bovenin */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -19,10 +20,10 @@ body {
     height: 80px;
     background-color: white;
     border-bottom: 1px solid #eee;
-    position: fixed; /* Blijft bovenop de foto zweven */
+    position: fixed; /* Blijft altijd bovenin staan */
     width: 100%;
     top: 0;
-    z-index: 1000;
+    z-index: 1000; /* Zorgt dat de balk bovenop de foto ligt */
 }
 
 .nav-left, .nav-right { flex: 1; }
@@ -41,7 +42,7 @@ body {
     font-size: 0.8rem;
 }
 
-/* 3. Hamburger Menu Streepjes */
+/* 3. HAMBURGER: De streepjes */
 .hamburger {
     width: 25px;
     cursor: pointer;
@@ -57,38 +58,35 @@ body {
     background-color: black;
 }
 
-/* 4. De Hero Sectie (DE FOTO) */
+/* 4. HERO: De grote foto */
 .hero {
     height: 100vh; /* Vult het hele scherm */
     width: 100%;
-    /* Let op: deze link moet exact zo blijven staan */
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                       url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070');
     background-size: cover;
     background-position: center;
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    color: white;
+    display: flex;
+    align-items: center; /* Verticaal midden */
+    justify-content: center; /* Horizontaal midden */
     text-align: center;
+    color: white;
 }
 
-/* 5. De Tekst in het midden */
+/* 5. TEKST OP DE FOTO */
 .hero-content h2 {
     font-family: 'Syncopate', sans-serif;
-    font-size: 4rem;
+    font-size: clamp(2rem, 8vw, 4rem); /* Werkt goed op mobiel en laptop */
     margin-bottom: 10px;
-    color: white; /* Zorgt dat de tekst wit is */
 }
 
 .hero-content p {
     font-size: 1.2rem;
     margin-bottom: 30px;
     letter-spacing: 2px;
-    color: white;
 }
 
-/* 6. De Shop Knop */
+/* 6. KNOP */
 .btn {
     display: inline-block;
     padding: 15px 40px;
