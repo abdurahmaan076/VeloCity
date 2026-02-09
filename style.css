@@ -1,7 +1,12 @@
+/* 1. ALGEMENE INSTELLINGEN */
+html {
+    scroll-behavior: smooth; /* Zorgt voor het soepele scrollen */
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: white; }
 
-/* NAVBAR */
+/* 2. NAVBAR */
 .navbar {
     display: flex; justify-content: space-between; align-items: center;
     padding: 0 5%; height: 80px; background-color: white;
@@ -12,7 +17,7 @@ body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: w
 .hamburger { width: 25px; cursor: pointer; display: flex; flex-direction: column; gap: 5px; }
 .hamburger span { display: block; width: 100%; height: 2px; background-color: black; }
 
-/* SIDE NAV - Aangepast voor laptop */
+/* 3. SIDE NAV (UITSCHUIFMENU) */
 .side-nav {
     height: 100%; width: 0; position: fixed; z-index: 2001;
     top: 0; left: 0; background-color: white; overflow-x: hidden;
@@ -21,8 +26,7 @@ body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: w
     box-shadow: 5px 0 15px rgba(0,0,0,0.1);
 }
 .menu-header { padding: 25px; text-align: right; }
-.close-btn { font-size: 30px; cursor: pointer; font-family: sans-serif; }
-
+.close-btn { font-size: 30px; cursor: pointer; }
 .menu-section { padding: 10px 30px; }
 .menu-list { list-style: none; }
 .menu-list li a, .product-toggle {
@@ -31,24 +35,17 @@ body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: w
     font-weight: 800; font-size: 18px; border-bottom: 1px solid #f0f0f0;
     cursor: pointer;
 }
-
-/* DROPDOWN MERKEN */
 .submenu { list-style: none; display: none; background-color: #fafafa; padding-left: 15px; }
 .submenu li a { font-size: 16px; font-weight: 500; color: #444; border-bottom: none; padding: 12px 0; }
 #arrow { font-size: 10px; transition: 0.3s; }
 
-/* CONTACT SECTIE (Zoals op telefoon) */
-.footer-section { margin-top: auto; background-color: #fff; border-top: 1px solid #eee; padding: 30px; }
-.section-title { font-size: 11px; color: #999; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px; }
+.footer-section { margin-top: auto; border-top: 1px solid #eee; padding: 30px; }
+.section-title { font-size: 11px; color: #999; text-transform: uppercase; margin-bottom: 20px; }
 .contact-item { display: flex; align-items: center; gap: 15px; }
-.icon-circle.blue { 
-    width: 45px; height: 45px; border-radius: 50%; background-color: #0088cc;
-    display: flex; align-items: center; justify-content: center;
-}
-.contact-label { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
-.contact-sub { font-size: 13px; color: #777; }
+.icon-circle.blue { width: 45px; height: 45px; border-radius: 50%; background-color: #0088cc; display: flex; align-items: center; justify-content: center; }
+.contact-label { font-weight: 700; font-size: 15px; }
 
-/* HERO SECTIE */
+/* 4. HERO SECTIE */
 .hero {
     height: 100vh; background-size: cover; background-position: center;
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
@@ -59,6 +56,32 @@ body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: w
 .btn {
     display: inline-block; padding: 15px 45px; background-color: white;
     color: black; text-decoration: none; font-weight: 900; margin-top: 30px;
-    transition: 0.3s;
 }
-.btn:hover { background-color: #eee; transform: scale(1.05); }
+
+/* 5. BEST VERKOCHT SECTIE */
+.products-section {
+    padding: 100px 5%;
+    background-color: white;
+    min-height: 100vh; /* Zorgt dat de sectie het hele scherm vult */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.section-title-main {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+.product-grid-placeholder {
+    width: 100%;
+    max-width: 1200px;
+    height: 400px;
+    border: 2px dashed #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-style: italic;
+}
