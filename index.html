@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" href="style.css">
     
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -16,19 +16,32 @@
             <span class="close-btn" onclick="toggleMenu()">&times;</span>
         </div>
         
-        <div class="menu-links">
-            <h3>Categorie</h3>
-            <a href="#">Jordan</a>
-            <a href="#">Nike Air Max</a>
-            <a href="#">Adidas Yeezy</a>
-            <a href="#">Nieuwe Releases</a>
+        <div class="menu-section">
+            <h3 class="section-title">Categorie</h3>
+            <ul class="menu-list">
+                <li><a href="#">Jordan</a></li>
+                <li><a href="#">Nike Air Max</a></li>
+                <li><a href="#">Adidas Yeezy</a></li>
+                <li><a href="#">New Balance</a></li>
+                <li><a href="#">Alle Sneakers</a></li>
+            </ul>
         </div>
 
-        <div class="menu-footer">
-            <h3>Hulp & advies</h3>
-            <a href="#">Veelgestelde vragen</a>
-            <a href="#">Start een chat</a>
-            <a href="#">Bel ons</a>
+        <div class="menu-section footer-section">
+            <h3 class="section-title">Hulp & advies</h3>
+            <div class="contact-item">
+                <div class="icon-circle blue">📞</div>
+                <div>
+                    <p class="contact-label">Bel ons</p>
+                    <p class="contact-sub">0342-421000</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="icon-circle light-blue">💬</div>
+                <div>
+                    <p class="contact-label">Start een chat</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -40,11 +53,9 @@
                 <span></span>
             </div>
         </div>
-
         <div class="nav-center">
             <h1 class="logo">VELOCITY</h1>
         </div>
-
         <div class="nav-right">
             <span class="cart-icon">CART (0)</span>
         </div>
@@ -52,7 +63,7 @@
 
     <header class="hero">
         <div class="hero-content">
-            <h2>Binnenkort</h2>
+            <h2>RELEASE 2026</h2>
             <p>Ontdek de nieuwe Velocity collectie.</p>
             <a href="#shop" class="btn">SHOP NU</a>
         </div>
