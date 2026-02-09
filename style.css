@@ -19,7 +19,7 @@ body {
     height: 80px;
     background-color: white;
     border-bottom: 1px solid #eee;
-    position: fixed; /* Zorgt dat de balk bovenop de foto blijft zweven */
+    position: fixed; /* Blijft bovenop de foto zweven */
     width: 100%;
     top: 0;
     z-index: 1000;
@@ -41,7 +41,7 @@ body {
     font-size: 0.8rem;
 }
 
-/* 3. Hamburger Menu */
+/* 3. Hamburger Menu Streepjes */
 .hamburger {
     width: 25px;
     cursor: pointer;
@@ -57,35 +57,38 @@ body {
     background-color: black;
 }
 
-/* 4. HERO SECTIE (De Foto) */
+/* 4. De Hero Sectie (DE FOTO) */
 .hero {
     height: 100vh; /* Vult het hele scherm */
     width: 100%;
-    /* De foto met een donker laagje erover */
+    /* Let op: deze link moet exact zo blijven staan */
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                      url('https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&q=80&w=2070');
+                      url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070');
     background-size: cover;
     background-position: center;
-    display: flex; /* Maakt centreren mogelijk */
-    align-items: center; /* Zet tekst in het midden (verticaal) */
-    justify-content: center; /* Zet tekst in het midden (horizontaal) */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
     color: white;
     text-align: center;
 }
 
-/* 5. Tekst en Knop op de foto */
+/* 5. De Tekst in het midden */
 .hero-content h2 {
     font-family: 'Syncopate', sans-serif;
     font-size: 4rem;
     margin-bottom: 10px;
+    color: white; /* Zorgt dat de tekst wit is */
 }
 
 .hero-content p {
     font-size: 1.2rem;
     margin-bottom: 30px;
     letter-spacing: 2px;
+    color: white;
 }
 
+/* 6. De Shop Knop */
 .btn {
     display: inline-block;
     padding: 15px 40px;
