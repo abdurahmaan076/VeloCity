@@ -13,15 +13,16 @@
         <div class="menu-header">
             <span class="close-btn" onclick="toggleMenu()">&times;</span>
         </div>
-        <div class="menu-list-container">
+        <div class="menu-section">
             <ul class="menu-list">
                 <li><a href="#">Home</a></li>
-                <li onclick="toggleProducts()">Producten ▼</li>
-                <ul id="brand-list" class="submenu" style="display:none; list-style:none; padding-left:20px;">
-                    <li><a href="#">Asics</a></li>
-                    <li><a href="#">New Balance</a></li>
-                    <li><a href="#">Nike</a></li>
-                </ul>
+                <li class="dropdown-item">
+                    <div class="product-toggle" onclick="toggleProducts()">Producten <span id="arrow">▼</span></div>
+                    <ul id="brand-list" class="submenu">
+                        <li><a href="#">Asics</a></li>
+                        <li><a href="#">New Balance</a></li>
+                    </ul>
+                </li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </div>
@@ -48,10 +49,7 @@
         </div>
         <div class="nav-center"><h1 class="logo">VELOCITY</h1></div>
         <div class="nav-right">
-            <div class="cart-container" onclick="toggleCart()">
-                <span class="cart-icon-emoji">🛒</span>
-                <span id="cart-number" class="cart-badge">0</span>
-            </div>
+            <span class="cart-icon" id="cart-count" onclick="toggleCart()">CART (0)</span>
         </div>
     </nav>
 
@@ -64,79 +62,114 @@
     </header>
 
     <section id="best-verkocht" class="products-section">
-        <h2 class="section-title-main">Best verkocht</h2>
-        <div class="product-grid">
-            
-            <div class="product-card">
-                <div class="product-image"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg"></div>
-                <div class="product-info">
-                    <h3 class="brand">ASICS</h3>
-                    <p class="model">GEL-NYC Graphite Grey</p>
-                    <p class="price">€160,00</p>
-                    <select class="size-select">
-                        <option value="" disabled selected>Maat</option>
-                        <option>36</option><option>38</option><option>40</option><option>42</option><option>44</option>
-                    </select>
-                    <button class="add-to-cart" onclick="addToCart(this)">+ In mandje</button>
+        <div class="container">
+            <h2 class="section-title-main">Best verkocht</h2>
+            <div class="product-grid">
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg" alt="Asics">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="brand">ASICS</h3>
+                        <p class="model">GEL-NYC Graphite Grey</p>
+                        <p class="price">€160,00</p>
+                        <select class="size-select">
+                            <option value="" disabled selected>Kies maat</option>
+                            <option value="36">36</option><option value="37">37</option>
+                            <option value="38">38</option><option value="39">39</option>
+                            <option value="40">40</option><option value="41">41</option>
+                            <option value="42">42</option><option value="43">43</option>
+                            <option value="44">44</option>
+                        </select>
+                        <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
+                    </div>
                 </div>
-            </div>
 
-            <div class="product-card">
-                <div class="product-image"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/shopping.webp"></div>
-                <div class="product-info">
-                    <h3 class="brand">NIKE</h3>
-                    <p class="model">P-6000 Black/Chrome</p>
-                    <p class="price">€110,00</p>
-                    <select class="size-select">
-                        <option value="" disabled selected>Maat</option>
-                        <option>36</option><option>38</option><option>40</option><option>42</option><option>44</option>
-                    </select>
-                    <button class="add-to-cart" onclick="addToCart(this)">+ In mandje</button>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/shopping.webp" alt="Nike">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="brand">NIKE</h3>
+                        <p class="model">P-6000 Black/Chrome</p>
+                        <p class="price">€110,00</p>
+                        <select class="size-select">
+                            <option value="" disabled selected>Kies maat</option>
+                            <option value="36">36</option><option value="37">37</option><option value="38">38</option>
+                            <option value="39">39</option><option value="40">40</option><option value="41">41</option>
+                            <option value="42">42</option><option value="43">43</option><option value="44">44</option>
+                        </select>
+                        <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
+                    </div>
                 </div>
-            </div>
 
-            <div class="product-card">
-                <div class="product-image"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download%20(1).jpeg"></div>
-                <div class="product-info">
-                    <h3 class="brand">NEW BALANCE</h3>
-                    <p class="model">9060 'Grey'</p>
-                    <p class="price">€180,00</p>
-                    <select class="size-select">
-                        <option value="" disabled selected>Maat</option>
-                        <option>36</option><option>38</option><option>40</option><option>42</option><option>44</option>
-                    </select>
-                    <button class="add-to-cart" onclick="addToCart(this)">+ In mandje</button>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download%20(1).jpeg" alt="NB">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="brand">NEW BALANCE</h3>
+                        <p class="model">9060 'Grey'</p>
+                        <p class="price">€180,00</p>
+                        <select class="size-select">
+                            <option value="" disabled selected>Kies maat</option>
+                            <option value="36">36</option><option value="37">37</option><option value="38">38</option>
+                            <option value="39">39</option><option value="40">40</option><option value="41">41</option>
+                            <option value="42">42</option><option value="43">43</option><option value="44">44</option>
+                        </select>
+                        <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <script>
+        let menuOpen = false;
+        let cartOpen = false;
         let cartCount = 0;
-        function toggleMenu() { 
-            const s = document.getElementById("side-menu"); 
-            s.style.width = s.style.width === "300px" ? "0" : "300px"; 
+
+        function toggleMenu() {
+            const menu = document.getElementById("side-menu");
+            menu.style.width = menuOpen ? "0" : "320px";
+            menuOpen = !menuOpen;
         }
-        function toggleCart() { 
-            const c = document.getElementById("cart-sidebar"); 
-            c.style.width = c.style.width === "350px" ? "0" : "350px"; 
+
+        function toggleCart() {
+            const cart = document.getElementById("cart-sidebar");
+            cart.style.width = cartOpen ? "0" : "350px";
+            cartOpen = !cartOpen;
         }
-        function toggleProducts() {
-            const b = document.getElementById("brand-list");
-            b.style.display = b.style.display === "none" ? "block" : "none";
-        }
-        function addToCart(btn) {
-            const card = btn.parentElement;
-            const size = card.querySelector(".size-select").value;
-            const model = card.querySelector(".model").innerText;
-            if(!size) return alert("Kies een maat!");
-            
+
+        function addToCart(button) {
+            // Zoek de geselecteerde maat in de kaart waar op geklikt is
+            const card = button.parentElement;
+            const sizeSelect = card.querySelector('.size-select');
+            const selectedSize = sizeSelect.value;
+            const modelName = card.querySelector('.model').innerText;
+
+            if (!selectedSize) {
+                alert("Kies eerst een maat!");
+                return;
+            }
+
             cartCount++;
-            document.getElementById("cart-number").innerText = cartCount;
+            document.getElementById("cart-count").innerText = `CART (${cartCount})`;
+            
+            // Verwijder 'leeg' bericht
             const list = document.getElementById("cart-items-list");
-            if(cartCount === 1) list.innerHTML = "";
-            list.innerHTML += `<div class="cart-item-row">${model} - Maat ${size}</div>`;
-            toggleCart();
+            if (cartCount === 1) list.innerHTML = "";
+
+            // Voeg item toe aan zijbalk
+            const item = document.createElement("div");
+            item.className = "cart-item-row";
+            item.innerHTML = `<span>${modelName}</span> <strong>Maat ${selectedSize}</strong>`;
+            list.appendChild(item);
+
+            alert(`${modelName} (Maat ${selectedSize}) is toegevoegd!`);
+            toggleCart(); // Open de winkelwagen automatisch
         }
     </script>
 </body>
