@@ -21,7 +21,6 @@
                     <ul id="brand-list" class="submenu">
                         <li><a href="#">Asics</a></li>
                         <li><a href="#">New Balance</a></li>
-                         <li><a href="#">Nike</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Contact</a></li>
@@ -31,7 +30,7 @@
 
     <div id="cart-sidebar" class="cart-nav">
         <div class="menu-header">
-            <h3>JOUW CART</h3>
+            <h3>JOUW WINKELWAGEN</h3>
             <span class="close-btn" onclick="toggleCart()">&times;</span>
         </div>
         <div id="cart-items-list" class="cart-content">
@@ -50,7 +49,10 @@
         </div>
         <div class="nav-center"><h1 class="logo">VELOCITY</h1></div>
         <div class="nav-right">
-            <span class="cart-icon" id="cart-count" onclick="toggleCart()">CART (0)</span>
+            <div class="cart-container" onclick="toggleCart()">
+                <span class="cart-icon-emoji">🛒</span>
+                <span id="cart-number" class="cart-badge">0</span>
+            </div>
         </div>
     </nav>
 
@@ -77,11 +79,9 @@
                         <p class="price">€160,00</p>
                         <select class="size-select">
                             <option value="" disabled selected>Kies maat</option>
-                            <option value="36">36</option><option value="37">37</option>
-                            <option value="38">38</option><option value="39">39</option>
-                            <option value="40">40</option><option value="41">41</option>
-                            <option value="42">42</option><option value="43">43</option>
-                            <option value="44">44</option>
+                            <option value="36">36</option><option value="37">37</option><option value="38">38</option>
+                            <option value="39">39</option><option value="40">40</option><option value="41">41</option>
+                            <option value="42">42</option><option value="43">43</option><option value="44">44</option>
                         </select>
                         <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
                     </div>
@@ -94,7 +94,7 @@
                     <div class="product-info">
                         <h3 class="brand">NIKE</h3>
                         <p class="model">P-6000 Black/Chrome</p>
-                        <p class="price">€100,00</p>
+                        <p class="price">€110,00</p>
                         <select class="size-select">
                             <option value="" disabled selected>Kies maat</option>
                             <option value="36">36</option><option value="37">37</option><option value="38">38</option>
@@ -144,8 +144,12 @@
             cartOpen = !cartOpen;
         }
 
+        function toggleProducts() {
+            const list = document.getElementById("brand-list");
+            list.style.display = (list.style.display === "block") ? "none" : "block";
+        }
+
         function addToCart(button) {
-            // Zoek de geselecteerde maat in de kaart waar op geklikt is
             const card = button.parentElement;
             const sizeSelect = card.querySelector('.size-select');
             const selectedSize = sizeSelect.value;
@@ -157,20 +161,18 @@
             }
 
             cartCount++;
-            document.getElementById("cart-count").innerText = `CART (${cartCount})`;
+            document.getElementById("cart-number").innerText = cartCount;
             
-            // Verwijder 'leeg' bericht
             const list = document.getElementById("cart-items-list");
             if (cartCount === 1) list.innerHTML = "";
 
-            // Voeg item toe aan zijbalk
             const item = document.createElement("div");
             item.className = "cart-item-row";
             item.innerHTML = `<span>${modelName}</span> <strong>Maat ${selectedSize}</strong>`;
             list.appendChild(item);
 
             alert(`${modelName} (Maat ${selectedSize}) is toegevoegd!`);
-            toggleCart(); // Open de winkelwagen automatisch
+            toggleCart(); 
         }
     </script>
 </body>
