@@ -17,9 +17,7 @@
             <ul class="menu-list">
                 <li><a href="#">Home</a></li>
                 <li class="dropdown-item">
-                    <div class="product-toggle" onclick="toggleProducts()">
-                        Producten <span id="arrow">▼</span>
-                    </div>
+                    <div class="product-toggle" onclick="toggleProducts()">Producten <span id="arrow">▼</span></div>
                     <ul id="brand-list" class="submenu">
                         <li><a href="#">Asics</a></li>
                         <li><a href="#">New Balance</a></li>
@@ -30,6 +28,19 @@
         </div>
     </div>
 
+    <div id="cart-sidebar" class="cart-nav">
+        <div class="menu-header">
+            <h3>JOUW CART</h3>
+            <span class="close-btn" onclick="toggleCart()">&times;</span>
+        </div>
+        <div id="cart-items-list" class="cart-content">
+            <p class="empty-msg">Je winkelwagen is nog leeg.</p>
+        </div>
+        <div class="cart-footer">
+            <button class="checkout-btn">AFREKENEN</button>
+        </div>
+    </div>
+
     <nav class="navbar">
         <div class="nav-left">
             <div class="hamburger" onclick="toggleMenu()">
@@ -37,7 +48,9 @@
             </div>
         </div>
         <div class="nav-center"><h1 class="logo">VELOCITY</h1></div>
-        <div class="nav-right"><span class="cart-icon" id="cart-count">CART (0)</span></div>
+        <div class="nav-right">
+            <span class="cart-icon" id="cart-count" onclick="toggleCart()">CART (0)</span>
+        </div>
     </nav>
 
     <header class="hero">
@@ -51,11 +64,11 @@
     <section id="best-verkocht" class="products-section">
         <div class="container">
             <h2 class="section-title-main">Best verkocht</h2>
-            
             <div class="product-grid">
+                
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg" alt="Asics GEL-NYC">
+                        <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg" alt="Asics">
                     </div>
                     <div class="product-info">
                         <h3 class="brand">ASICS</h3>
@@ -63,16 +76,19 @@
                         <p class="price">€160,00</p>
                         <select class="size-select">
                             <option value="" disabled selected>Kies maat</option>
-                            <option>36</option><option>37</option><option>38</option><option>39</option>
-                            <option>40</option><option>41</option><option>42</option><option>43</option><option>44</option>
+                            <option value="36">36</option><option value="37">37</option>
+                            <option value="38">38</option><option value="39">39</option>
+                            <option value="40">40</option><option value="41">41</option>
+                            <option value="42">42</option><option value="43">43</option>
+                            <option value="44">44</option>
                         </select>
-                        <button class="add-to-cart" onclick="addToCart()">In winkelwagen</button>
+                        <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/shopping.webp" alt="Nike P-6000">
+                        <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/shopping.webp" alt="Nike">
                     </div>
                     <div class="product-info">
                         <h3 class="brand">NIKE</h3>
@@ -80,16 +96,17 @@
                         <p class="price">€110,00</p>
                         <select class="size-select">
                             <option value="" disabled selected>Kies maat</option>
-                            <option>36</option><option>37</option><option>38</option><option>39</option>
-                            <option>40</option><option>41</option><option>42</option><option>43</option><option>44</option>
+                            <option value="36">36</option><option value="37">37</option><option value="38">38</option>
+                            <option value="39">39</option><option value="40">40</option><option value="41">41</option>
+                            <option value="42">42</option><option value="43">43</option><option value="44">44</option>
                         </select>
-                        <button class="add-to-cart" onclick="addToCart()">In winkelwagen</button>
+                        <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download%20(1).jpeg" alt="New Balance 9060">
+                        <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download%20(1).jpeg" alt="NB">
                     </div>
                     <div class="product-info">
                         <h3 class="brand">NEW BALANCE</h3>
@@ -97,40 +114,62 @@
                         <p class="price">€180,00</p>
                         <select class="size-select">
                             <option value="" disabled selected>Kies maat</option>
-                            <option>36</option><option>37</option><option>38</option><option>39</option>
-                            <option>40</option><option>41</option><option>42</option><option>43</option><option>44</option>
+                            <option value="36">36</option><option value="37">37</option><option value="38">38</option>
+                            <option value="39">39</option><option value="40">40</option><option value="41">41</option>
+                            <option value="42">42</option><option value="43">43</option><option value="44">44</option>
                         </select>
-                        <button class="add-to-cart" onclick="addToCart()">In winkelwagen</button>
+                        <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <script>
         let menuOpen = false;
-        let cartItems = 0;
+        let cartOpen = false;
+        let cartCount = 0;
 
         function toggleMenu() {
             const menu = document.getElementById("side-menu");
-            if (!menuOpen) {
-                menu.style.width = "320px"; 
-                menuOpen = true;
-            } else {
-                menu.style.width = "0";
-                menuOpen = false;
+            menu.style.width = menuOpen ? "0" : "320px";
+            menuOpen = !menuOpen;
+        }
+
+        function toggleCart() {
+            const cart = document.getElementById("cart-sidebar");
+            cart.style.width = cartOpen ? "0" : "350px";
+            cartOpen = !cartOpen;
+        }
+
+        function addToCart(button) {
+            // Zoek de geselecteerde maat in de kaart waar op geklikt is
+            const card = button.parentElement;
+            const sizeSelect = card.querySelector('.size-select');
+            const selectedSize = sizeSelect.value;
+            const modelName = card.querySelector('.model').innerText;
+
+            if (!selectedSize) {
+                alert("Kies eerst een maat!");
+                return;
             }
-        }
 
-        function toggleProducts() {
-            const list = document.getElementById("brand-list");
-            list.style.display = (list.style.display === "block") ? "none" : "block";
-        }
+            cartCount++;
+            document.getElementById("cart-count").innerText = `CART (${cartCount})`;
+            
+            // Verwijder 'leeg' bericht
+            const list = document.getElementById("cart-items-list");
+            if (cartCount === 1) list.innerHTML = "";
 
-        function addToCart() {
-            cartItems++;
-            document.getElementById("cart-count").innerText = `CART (${cartItems})`;
-            alert("Schoen toegevoegd aan je winkelwagen!");
+            // Voeg item toe aan zijbalk
+            const item = document.createElement("div");
+            item.className = "cart-item-row";
+            item.innerHTML = `<span>${modelName}</span> <strong>Maat ${selectedSize}</strong>`;
+            list.appendChild(item);
+
+            alert(`${modelName} (Maat ${selectedSize}) is toegevoegd!`);
+            toggleCart(); // Open de winkelwagen automatisch
         }
     </script>
 </body>
