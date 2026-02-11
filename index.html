@@ -28,14 +28,15 @@
         <span class="close-btn" onclick="toggleMenu()">&times;</span>
         <ul class="menu-list">
             <li><a href="#">Home</a></li>
-            <li><a href="#">Producten</a></li>
+            <li><a href="#">Collectie</a></li>
+            <li><a href="#">Over Ons</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
     </div>
 
     <div id="cart-sidebar" class="cart-nav">
         <div class="menu-header">
-            <h3>WINKELWAGEN</h3>
+            <h3>JOUW CART</h3>
             <span class="close-btn" onclick="toggleCart()">&times;</span>
         </div>
         <div id="cart-items-list" class="cart-content">
@@ -47,7 +48,7 @@
     <header class="hero">
         <div class="hero-content">
             <h2 class="loading-text">LOADING...</h2>
-            <p>De nieuwe collectie komt eraan.</p>
+            <p>De meest exclusieve sneakers van dit moment.</p>
             <a href="#shop" class="btn">SHOP NU</a>
         </div>
     </header>
@@ -58,28 +59,31 @@
             <div class="product-card">
                 <div class="product-image"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg"></div>
                 <div class="product-info">
-                    <p class="model">ASICS GEL-NYC</p>
+                    <p class="brand">ASICS</p>
+                    <p class="model">GEL-NYC Graphite</p>
                     <p class="price">€160,00</p>
                     <select class="size-select"><option value="" disabled selected>Maat</option><option>40</option><option>42</option><option>44</option></select>
-                    <button class="add-to-cart" onclick="addToCart(this)">Koop</button>
+                    <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
                 </div>
             </div>
             <div class="product-card">
                 <div class="product-image"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/shopping.webp"></div>
                 <div class="product-info">
-                    <p class="model">NIKE P-6000</p>
+                    <p class="brand">NIKE</p>
+                    <p class="model">P-6000 Black</p>
                     <p class="price">€110,00</p>
                     <select class="size-select"><option value="" disabled selected>Maat</option><option>40</option><option>42</option><option>44</option></select>
-                    <button class="add-to-cart" onclick="addToCart(this)">Koop</button>
+                    <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
                 </div>
             </div>
             <div class="product-card">
                 <div class="product-image"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download%20(1).jpeg"></div>
                 <div class="product-info">
-                    <p class="model">NB 9060</p>
+                    <p class="brand">NEW BALANCE</p>
+                    <p class="model">9060 Rain Cloud</p>
                     <p class="price">€180,00</p>
                     <select class="size-select"><option value="" disabled selected>Maat</option><option>40</option><option>42</option><option>44</option></select>
-                    <button class="add-to-cart" onclick="addToCart(this)">Koop</button>
+                    <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
                 </div>
             </div>
         </div>
@@ -89,18 +93,23 @@
         let cartCount = 0;
         function toggleMenu() {
             const m = document.getElementById("side-menu");
-            m.style.width = m.style.width === "250px" ? "0" : "250px";
+            m.style.width = (m.style.width === "280px") ? "0" : "280px";
         }
         function toggleCart() {
             const c = document.getElementById("cart-sidebar");
-            c.style.width = c.style.width === "320px" ? "0" : "320px";
+            c.style.width = (c.style.width === "320px") ? "0" : "320px";
         }
         function addToCart(btn) {
-            const size = btn.parentElement.querySelector(".size-select").value;
-            if(!size) return alert("Kies een maat!");
+            const card = btn.parentElement;
+            const model = card.querySelector(".model").innerText;
+            const size = card.querySelector(".size-select").value;
+            if(!size) { alert("Selecteer een maat!"); return; }
+            
             cartCount++;
             document.getElementById("cart-number").innerText = cartCount;
-            document.getElementById("cart-items-list").innerHTML += `<p style="padding:10px; border-bottom:1px solid #eee;">Item toegevoegd - Maat ${size}</p>`;
+            const list = document.getElementById("cart-items-list");
+            if(cartCount === 1) list.innerHTML = "";
+            list.innerHTML += `<div style="padding:10px; border-bottom:1px solid #eee;"><strong>${model}</strong> - Maat ${size}</div>`;
             toggleCart();
         }
     </script>
