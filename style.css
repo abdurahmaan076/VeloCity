@@ -1,73 +1,56 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: #fff; overflow-x: hidden; }
-
-/* NAVBAR */
-.navbar { 
-    display: flex; justify-content: space-between; align-items: center; 
-    padding: 0 5%; height: 80px; background: white; 
-    position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #eee; 
-}
-.logo { font-family: 'Syncopate'; font-size: 1.2rem; letter-spacing: 4px; }
-.hamburger { cursor: pointer; display: flex; flex-direction: column; gap: 5px; }
-.hamburger span { width: 25px; height: 2px; background: black; }
-
-/* WINKELWAGEN ICOON */
-.cart-container { position: relative; cursor: pointer; }
-.cart-icon-emoji { font-size: 24px; }
-.cart-badge { 
-    position: absolute; top: -5px; right: -8px; 
-    background: black; color: white; font-size: 10px; 
-    width: 18px; height: 18px; border-radius: 50%; 
-    display: flex; align-items: center; justify-content: center; 
+/* WINKELWAGEN ZIJBALK (RECHTS) */
+.cart-nav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 2002;
+    top: 0;
+    right: 0; /* Komt van rechts */
+    background: white;
+    overflow-x: hidden;
+    transition: 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
 }
 
-/* ZIJBALKEN */
-.side-nav, .cart-nav { 
-    height: 100%; width: 0; position: fixed; z-index: 2000; 
-    top: 0; background: white; transition: 0.4s; overflow: hidden; 
-    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
-}
-.side-nav { left: 0; }
-.cart-nav { right: 0; }
-.menu-header { padding: 20px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; }
-.close-btn { cursor: pointer; font-size: 25px; }
-
-/* HERO */
-.hero { 
-    height: 100vh; background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), 
-    url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); 
-    background-size: cover; background-position: center; 
-    display: flex; align-items: center; justify-content: center; color: white; text-align: center; 
-}
-.loading-text { font-family: 'Syncopate'; animation: pulse 2s infinite; font-size: 3rem; }
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-.btn { 
-    display: inline-block; padding: 12px 30px; border: 2px solid white; 
-    color: white; text-decoration: none; font-weight: bold; margin-top: 20px; 
+.cart-content {
+    padding: 30px;
+    flex-grow: 1;
 }
 
-/* PRODUCT GRID */
-.products-section { padding: 80px 5%; text-align: center; }
-.section-title-main { font-family: 'Syncopate'; margin-bottom: 40px; }
-.product-grid { 
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 30px; max-width: 1200px; margin: 0 auto; 
-}
-.product-card { background: #fff; padding: 15px; border: 1px solid #f0f0f0; transition: 0.3s; }
-.product-card:hover { border-color: #000; }
-.product-image img { width: 100%; height: auto; margin-bottom: 15px; }
-
-.brand { font-size: 11px; color: #888; }
-.model { font-weight: 700; margin: 5px 0; }
-.price { color: #333; margin-bottom: 10px; }
-
-.size-select { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; }
-.add-to-cart { 
-    width: 100%; padding: 10px; background: black; color: white; 
-    border: none; cursor: pointer; font-weight: bold; 
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
 }
 
-/* CART ROWS */
-.cart-item-row { padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; text-align: left; }
-.checkout-btn { width: 90%; margin: 5%; padding: 15px; background: black; color: white; border: none; position: absolute; bottom: 0; }
+.cart-footer {
+    padding: 30px;
+    border-top: 1px solid #eee;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 15px;
+    background: black;
+    color: white;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+.empty-msg {
+    color: #888;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Update de cursor voor de cart-icon in de navbar */
+.cart-icon {
+    cursor: pointer;
+    font-weight: 700;
+}
