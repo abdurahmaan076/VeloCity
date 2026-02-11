@@ -1,179 +1,73 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VELOCITY | Exclusive Sneakers</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-</head>
-<body>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #fff; overflow-x: hidden; }
 
-    <div id="side-menu" class="side-nav">
-        <div class="menu-header">
-            <span class="close-btn" onclick="toggleMenu()">&times;</span>
-        </div>
-        <div class="menu-section">
-            <ul class="menu-list">
-                <li><a href="#">Home</a></li>
-                <li class="dropdown-item">
-                    <div class="product-toggle" onclick="toggleProducts()">Producten <span id="arrow">▼</span></div>
-                    <ul id="brand-list" class="submenu">
-                        <li><a href="#">Asics</a></li>
-                        <li><a href="#">New Balance</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-    </div>
+/* NAVBAR */
+.navbar { 
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 0 5%; height: 80px; background: white; 
+    position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #eee; 
+}
+.logo { font-family: 'Syncopate'; font-size: 1.2rem; letter-spacing: 4px; }
+.hamburger { cursor: pointer; display: flex; flex-direction: column; gap: 5px; }
+.hamburger span { width: 25px; height: 2px; background: black; }
 
-    <div id="cart-sidebar" class="cart-nav">
-        <div class="menu-header">
-            <h3>JOUW WINKELWAGEN</h3>
-            <span class="close-btn" onclick="toggleCart()">&times;</span>
-        </div>
-        <div id="cart-items-list" class="cart-content">
-            <p class="empty-msg">Je winkelwagen is nog leeg.</p>
-        </div>
-        <div class="cart-footer">
-            <button class="checkout-btn">AFREKENEN</button>
-        </div>
-    </div>
+/* WINKELWAGEN ICOON */
+.cart-container { position: relative; cursor: pointer; }
+.cart-icon-emoji { font-size: 24px; }
+.cart-badge { 
+    position: absolute; top: -5px; right: -8px; 
+    background: black; color: white; font-size: 10px; 
+    width: 18px; height: 18px; border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center; 
+}
 
-    <nav class="navbar">
-        <div class="nav-left">
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="nav-center"><h1 class="logo">VELOCITY</h1></div>
-        <div class="nav-right">
-            <div class="cart-container" onclick="toggleCart()">
-                <span class="cart-icon-emoji">🛒</span>
-                <span id="cart-number" class="cart-badge">0</span>
-            </div>
-        </div>
-    </nav>
+/* ZIJBALKEN */
+.side-nav, .cart-nav { 
+    height: 100%; width: 0; position: fixed; z-index: 2000; 
+    top: 0; background: white; transition: 0.4s; overflow: hidden; 
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+}
+.side-nav { left: 0; }
+.cart-nav { right: 0; }
+.menu-header { padding: 20px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; }
+.close-btn { cursor: pointer; font-size: 25px; }
 
-    <header class="hero">
-        <div class="hero-content">
-            <h2 class="loading-text">LOADING...</h2>
-            <p>Ontdek de nieuwe Velocity collectie.</p>
-            <a href="#best-verkocht" class="btn">SHOP NU</a>
-        </div>
-    </header>
+/* HERO */
+.hero { 
+    height: 100vh; background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), 
+    url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); 
+    background-size: cover; background-position: center; 
+    display: flex; align-items: center; justify-content: center; color: white; text-align: center; 
+}
+.loading-text { font-family: 'Syncopate'; animation: pulse 2s infinite; font-size: 3rem; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-    <section id="best-verkocht" class="products-section">
-        <div class="container">
-            <h2 class="section-title-main">Best verkocht</h2>
-            <div class="product-grid">
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg" alt="Asics">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="brand">ASICS</h3>
-                        <p class="model">GEL-NYC Graphite Grey</p>
-                        <p class="price">€160,00</p>
-                        <select class="size-select">
-                            <option value="" disabled selected>Kies maat</option>
-                            <option value="36">36</option><option value="37">37</option><option value="38">38</option>
-                            <option value="39">39</option><option value="40">40</option><option value="41">41</option>
-                            <option value="42">42</option><option value="43">43</option><option value="44">44</option>
-                        </select>
-                        <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
-                    </div>
-                </div>
+.btn { 
+    display: inline-block; padding: 12px 30px; border: 2px solid white; 
+    color: white; text-decoration: none; font-weight: bold; margin-top: 20px; 
+}
 
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/shopping.webp" alt="Nike">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="brand">NIKE</h3>
-                        <p class="model">P-6000 Black/Chrome</p>
-                        <p class="price">€110,00</p>
-                        <select class="size-select">
-                            <option value="" disabled selected>Kies maat</option>
-                            <option value="36">36</option><option value="37">37</option><option value="38">38</option>
-                            <option value="39">39</option><option value="40">40</option><option value="41">41</option>
-                            <option value="42">42</option><option value="43">43</option><option value="44">44</option>
-                        </select>
-                        <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
-                    </div>
-                </div>
+/* PRODUCT GRID */
+.products-section { padding: 80px 5%; text-align: center; }
+.section-title-main { font-family: 'Syncopate'; margin-bottom: 40px; }
+.product-grid { 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px; max-width: 1200px; margin: 0 auto; 
+}
+.product-card { background: #fff; padding: 15px; border: 1px solid #f0f0f0; transition: 0.3s; }
+.product-card:hover { border-color: #000; }
+.product-image img { width: 100%; height: auto; margin-bottom: 15px; }
 
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download%20(1).jpeg" alt="NB">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="brand">NEW BALANCE</h3>
-                        <p class="model">9060 'Grey'</p>
-                        <p class="price">€180,00</p>
-                        <select class="size-select">
-                            <option value="" disabled selected>Kies maat</option>
-                            <option value="36">36</option><option value="37">37</option><option value="38">38</option>
-                            <option value="39">39</option><option value="40">40</option><option value="41">41</option>
-                            <option value="42">42</option><option value="43">43</option><option value="44">44</option>
-                        </select>
-                        <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
-                    </div>
-                </div>
+.brand { font-size: 11px; color: #888; }
+.model { font-weight: 700; margin: 5px 0; }
+.price { color: #333; margin-bottom: 10px; }
 
-            </div>
-        </div>
-    </section>
+.size-select { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; }
+.add-to-cart { 
+    width: 100%; padding: 10px; background: black; color: white; 
+    border: none; cursor: pointer; font-weight: bold; 
+}
 
-    <script>
-        let menuOpen = false;
-        let cartOpen = false;
-        let cartCount = 0;
-
-        function toggleMenu() {
-            const menu = document.getElementById("side-menu");
-            menu.style.width = menuOpen ? "0" : "320px";
-            menuOpen = !menuOpen;
-        }
-
-        function toggleCart() {
-            const cart = document.getElementById("cart-sidebar");
-            cart.style.width = cartOpen ? "0" : "350px";
-            cartOpen = !cartOpen;
-        }
-
-        function toggleProducts() {
-            const list = document.getElementById("brand-list");
-            list.style.display = (list.style.display === "block") ? "none" : "block";
-        }
-
-        function addToCart(button) {
-            const card = button.parentElement;
-            const sizeSelect = card.querySelector('.size-select');
-            const selectedSize = sizeSelect.value;
-            const modelName = card.querySelector('.model').innerText;
-
-            if (!selectedSize) {
-                alert("Kies eerst een maat!");
-                return;
-            }
-
-            cartCount++;
-            document.getElementById("cart-number").innerText = cartCount;
-            
-            const list = document.getElementById("cart-items-list");
-            if (cartCount === 1) list.innerHTML = "";
-
-            const item = document.createElement("div");
-            item.className = "cart-item-row";
-            item.innerHTML = `<span>${modelName}</span> <strong>Maat ${selectedSize}</strong>`;
-            list.appendChild(item);
-
-            alert(`${modelName} (Maat ${selectedSize}) is toegevoegd!`);
-            toggleCart(); 
-        }
-    </script>
-</body>
-</html>
+/* CART ROWS */
+.cart-item-row { padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; text-align: left; }
+.checkout-btn { width: 90%; margin: 5%; padding: 15px; background: black; color: white; border: none; position: absolute; bottom: 0; }
