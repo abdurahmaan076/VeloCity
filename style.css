@@ -1,51 +1,73 @@
-/* ALGEMENE INSTELLINGEN */
-html { scroll-behavior: smooth; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background-color: #fff; color: #000; overflow-x: hidden; }
+body { font-family: 'Inter', sans-serif; background: #fff; overflow-x: hidden; }
 
 /* NAVBAR */
-.navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 80px; background: white; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #eee; }
-.logo { font-family: 'Syncopate', sans-serif; font-size: 1.2rem; letter-spacing: 4px; }
-.hamburger { width: 25px; cursor: pointer; display: flex; flex-direction: column; gap: 5px; }
-.hamburger span { display: block; width: 100%; height: 2px; background: black; }
+.navbar { 
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 0 5%; height: 80px; background: white; 
+    position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #eee; 
+}
+.logo { font-family: 'Syncopate'; font-size: 1.2rem; letter-spacing: 4px; }
+.hamburger { cursor: pointer; display: flex; flex-direction: column; gap: 5px; }
+.hamburger span { width: 25px; height: 2px; background: black; }
 
-/* WINKELWAGEN ICOON STYLING */
-.cart-container { position: relative; display: flex; align-items: center; cursor: pointer; }
+/* WINKELWAGEN ICOON */
+.cart-container { position: relative; cursor: pointer; }
 .cart-icon-emoji { font-size: 24px; }
-.cart-badge { position: absolute; top: -8px; right: -10px; background-color: black; color: white; font-size: 10px; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.cart-badge { 
+    position: absolute; top: -5px; right: -8px; 
+    background: black; color: white; font-size: 10px; 
+    width: 18px; height: 18px; border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center; 
+}
 
-/* ZIJBALKEN (MENU & CART) */
-.side-nav, .cart-nav { height: 100%; width: 0; position: fixed; z-index: 2002; top: 0; background: white; overflow-x: hidden; transition: 0.4s ease; display: flex; flex-direction: column; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+/* ZIJBALKEN */
+.side-nav, .cart-nav { 
+    height: 100%; width: 0; position: fixed; z-index: 2000; 
+    top: 0; background: white; transition: 0.4s; overflow: hidden; 
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+}
 .side-nav { left: 0; }
 .cart-nav { right: 0; }
+.menu-header { padding: 20px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; }
+.close-btn { cursor: pointer; font-size: 25px; }
 
-.menu-header { padding: 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
-.close-btn { font-size: 30px; cursor: pointer; }
-
-/* PRODUCT GRID */
-.products-section { padding: 100px 5%; }
-.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; }
-@media (max-width: 900px) { .product-grid { grid-template-columns: 1fr; } }
-
-.product-image { background: #f6f6f6; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; padding: 20px; margin-bottom: 15px; }
-.product-image img { width: 100%; height: auto; object-fit: contain; transition: 0.3s; }
-.product-card:hover img { transform: scale(1.05); }
-
-/* KEUZEMENU & KNOP */
-.size-select { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; font-family: 'Inter'; outline: none; }
-.add-to-cart { width: 100%; padding: 12px; background: transparent; border: 1px solid #000; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 11px; }
-.add-to-cart:hover { background: #000; color: #fff; }
-
-/* HERO & ANIMATIE */
-.hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
-.loading-text { font-family: 'Syncopate'; animation: pulse 2s infinite; letter-spacing: 5px; }
+/* HERO */
+.hero { 
+    height: 100vh; background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), 
+    url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); 
+    background-size: cover; background-position: center; 
+    display: flex; align-items: center; justify-content: center; color: white; text-align: center; 
+}
+.loading-text { font-family: 'Syncopate'; animation: pulse 2s infinite; font-size: 3rem; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-.btn { display: inline-block; padding: 15px 45px; border: 2px solid white; color: white; text-decoration: none; font-weight: 900; margin-top: 30px; transition: 0.3s; }
-.btn:hover { background: white; color: black; }
+.btn { 
+    display: inline-block; padding: 12px 30px; border: 2px solid white; 
+    color: white; text-decoration: none; font-weight: bold; margin-top: 20px; 
+}
 
-/* CART CONTENT */
-.cart-content { padding: 20px; flex-grow: 1; }
-.cart-item-row { padding: 15px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; font-size: 14px; }
-.cart-footer { padding: 20px; }
-.checkout-btn { width: 100%; padding: 15px; background: black; color: white; border: none; font-weight: 700; cursor: pointer; }
+/* PRODUCT GRID */
+.products-section { padding: 80px 5%; text-align: center; }
+.section-title-main { font-family: 'Syncopate'; margin-bottom: 40px; }
+.product-grid { 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px; max-width: 1200px; margin: 0 auto; 
+}
+.product-card { background: #fff; padding: 15px; border: 1px solid #f0f0f0; transition: 0.3s; }
+.product-card:hover { border-color: #000; }
+.product-image img { width: 100%; height: auto; margin-bottom: 15px; }
+
+.brand { font-size: 11px; color: #888; }
+.model { font-weight: 700; margin: 5px 0; }
+.price { color: #333; margin-bottom: 10px; }
+
+.size-select { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; }
+.add-to-cart { 
+    width: 100%; padding: 10px; background: black; color: white; 
+    border: none; cursor: pointer; font-weight: bold; 
+}
+
+/* CART ROWS */
+.cart-item-row { padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; text-align: left; }
+.checkout-btn { width: 90%; margin: 5%; padding: 15px; background: black; color: white; border: none; position: absolute; bottom: 0; }
