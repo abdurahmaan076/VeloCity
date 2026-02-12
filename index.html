@@ -6,78 +6,101 @@
     <title>VELOCITY | Exclusive Sneakers</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        /* RESET & BASIS */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: #fff; padding-top: 80px; }
+        body { font-family: 'Inter', sans-serif; background-color: #fff; color: #111; }
 
         /* NAVBAR */
         .navbar { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 0 5%; height: 80px; background: white; 
+            padding: 0 5%; height: 80px; background: rgba(255,255,255,0.95); 
             position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #eee; 
         }
         .logo { font-family: 'Syncopate'; font-size: 1.1rem; letter-spacing: 3px; }
 
-        /* CART ICON */
+        /* WINKELWAGEN ICOON */
         .cart-container { position: relative; cursor: pointer; }
         .cart-badge { 
-            position: absolute; top: -5px; right: -8px; 
+            position: absolute; top: -5px; right: -10px; 
             background: black; color: white; font-size: 10px; 
             width: 18px; height: 18px; border-radius: 50%; 
             display: flex; align-items: center; justify-content: center; font-weight: bold;
         }
 
-        /* GRID INSTELLINGEN */
-        .products-section { padding: 50px 5%; text-align: center; }
+        /* HERO SECTIE - NU 100% VULLEND */
+        .hero { 
+            height: 100vh; /* 100% van de schermhoogte */
+            width: 100%;
+            background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), 
+            url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); 
+            background-size: cover; 
+            background-position: center; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            text-align: center; 
+        }
+        .loading-text { font-family: 'Syncopate'; animation: pulse 2s infinite; font-size: 3.5rem; letter-spacing: 5px; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .hero p { font-size: 1.2rem; margin-top: 10px; font-weight: 300; letter-spacing: 1px; }
+
+        /* PRODUCTEN SECTIE */
+        .products-section { padding: 100px 5%; text-align: center; }
+        .section-title { font-family: 'Syncopate'; margin-bottom: 50px; font-size: 1.5rem; }
+        
+        /* GRID - STRAKKE UITLIJNING */
         .product-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            gap: 20px; 
+            gap: 30px; 
             max-width: 1200px; 
             margin: 0 auto;
+            align-items: stretch;
         }
 
-        /* DE KAART ZELF */
         .product-card { 
-            background: #fff; 
             display: flex; 
             flex-direction: column; 
-            border: 1px solid #eee; /* Dun randje om gelijkheid te zien */
-            height: 100%; /* Dwingt gelijke hoogte in de grid */
+            background: #fff; 
+            border: 1px solid #f0f0f0;
+            transition: 0.3s ease;
         }
+        .product-card:hover { border-color: #000; }
 
-        /* DE AFBEELDING CONTAINER - NU MET VASTE HOOGTE */
+        /* FOTO'S IN PRODUCTEN - GELIJKE HOOGTE */
         .product-image-box { 
             width: 100%; 
-            height: 250px; /* DIT Dwingt elke foto naar dezelfde hoogte */
-            background: #f6f6f6; 
+            height: 280px; /* Vaste hoogte voor de grijze vakken */
+            background: #f8f8f8; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             overflow: hidden;
         }
-
         .product-image-box img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; /* Zorgt dat de schoen niet vervormt */
-            padding: 20px;
+            width: 85%; 
+            height: 85%; 
+            object-fit: contain; 
+            transition: transform 0.4s ease;
         }
+        .product-card:hover img { transform: scale(1.1); }
 
-        /* DE INFO SECTIE */
+        /* PRODUCT INFO */
         .product-info { 
-            padding: 20px; 
-            flex-grow: 1; /* Vult de rest van de kaart op */
+            padding: 25px; 
+            flex-grow: 1; 
             display: flex; 
             flex-direction: column; 
             text-align: left; 
         }
+        .brand { font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 2px; }
+        .model { font-weight: 700; font-size: 16px; margin: 8px 0; min-height: 40px; }
+        .price { font-weight: 400; margin-bottom: 20px; color: #333; }
 
-        .model { font-weight: 700; font-size: 16px; margin: 5px 0 10px 0; min-height: 45px; }
-        .price { font-size: 14px; margin-bottom: 15px; color: #555; }
-
-        .size-select { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; }
+        .size-select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; outline: none; cursor: pointer; }
         
-        /* KNOP ALTIJD ONDERAAN */
         .add-to-cart { 
             margin-top: auto; 
             width: 100%; 
@@ -88,19 +111,31 @@
             font-weight: 700; 
             cursor: pointer; 
             text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
         }
 
         /* CART SIDEBAR */
-        .cart-nav { height: 100%; width: 0; position: fixed; z-index: 2000; right: 0; top: 0; background: white; transition: 0.4s; overflow: hidden; box-shadow: -5px 0 15px rgba(0,0,0,0.1); }
-        .cart-header { padding: 20px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; }
+        .cart-nav { 
+            height: 100%; width: 0; position: fixed; z-index: 2000; right: 0; top: 0; 
+            background: white; transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1); 
+            overflow: hidden; box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
+        }
+        .cart-header { padding: 30px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; align-items: center; }
+        .close-cart { cursor: pointer; font-size: 20px; font-weight: bold; }
 
-        @media (max-width: 900px) { .product-grid { grid-template-columns: 1fr; } }
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .loading-text { font-size: 2rem; }
+            .hero { height: 70vh; }
+        }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="nav-left"><p>MENU</p></div>
+        <div class="nav-left"></div>
         <div class="nav-center"><h1 class="logo">VELOCITY</h1></div>
         <div class="nav-right">
             <div class="cart-container" onclick="toggleCart()">
@@ -111,12 +146,22 @@
     </nav>
 
     <div id="cart-sidebar" class="cart-nav">
-        <div class="cart-header"><h3>WINKELWAGEN</h3><span onclick="toggleCart()" style="cursor:pointer">X</span></div>
-        <div id="cart-items" style="padding: 20px;"></div>
+        <div class="cart-header">
+            <h3 style="font-family: 'Syncopate'; font-size: 0.9rem;">WINKELWAGEN</h3>
+            <span class="close-cart" onclick="toggleCart()">✕</span>
+        </div>
+        <div id="cart-content" style="padding: 30px;">
+            <p id="empty-msg" style="color: #999; text-align: center; margin-top: 50px;">Je mandje is leeg.</p>
+        </div>
     </div>
 
+    <header class="hero">
+        <h2 class="loading-text">LOADING...</h2>
+        <p>EXPLORE THE NEW VELOCITY COLLECTION</p>
+    </header>
+
     <section class="products-section">
-        <h2 style="font-family: 'Syncopate'; margin-bottom: 30px;">BEST VERKOCHT</h2>
+        <h2 class="section-title">BEST VERKOCHT</h2>
         <div class="product-grid">
             
             <div class="product-card">
@@ -124,10 +169,11 @@
                     <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg">
                 </div>
                 <div class="product-info">
-                    <p class="model">ASICS GEL-NYC Graphite</p>
+                    <span class="brand">Asics</span>
+                    <p class="model">GEL-NYC Graphite Grey</p>
                     <p class="price">€160,00</p>
-                    <select class="size-select"><option disabled selected>Maat</option><option>40</option><option>42</option></select>
-                    <button class="add-to-cart" onclick="addToCart()">In winkelwagen</button>
+                    <select class="size-select"><option disabled selected>Maat</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option></select>
+                    <button class="add-to-cart" onclick="addToCart('Asics GEL-NYC')">In winkelwagen</button>
                 </div>
             </div>
 
@@ -136,10 +182,11 @@
                     <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/shopping.webp">
                 </div>
                 <div class="product-info">
-                    <p class="model">NIKE P-6000 Black</p>
+                    <span class="brand">Nike</span>
+                    <p class="model">P-6000 Black/Chrome</p>
                     <p class="price">€110,00</p>
-                    <select class="size-select"><option disabled selected>Maat</option><option>40</option><option>42</option></select>
-                    <button class="add-to-cart" onclick="addToCart()">In winkelwagen</button>
+                    <select class="size-select"><option disabled selected>Maat</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option></select>
+                    <button class="add-to-cart" onclick="addToCart('Nike P-6000')">In winkelwagen</button>
                 </div>
             </div>
 
@@ -148,10 +195,11 @@
                     <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download%20(1).jpeg">
                 </div>
                 <div class="product-info">
-                    <p class="model">NB 9060 Rain Cloud</p>
+                    <span class="brand">New Balance</span>
+                    <p class="model">9060 Rain Cloud</p>
                     <p class="price">€180,00</p>
-                    <select class="size-select"><option disabled selected>Maat</option><option>40</option><option>42</option></select>
-                    <button class="add-to-cart" onclick="addToCart()">In winkelwagen</button>
+                    <select class="size-select"><option disabled selected>Maat</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option></select>
+                    <button class="add-to-cart" onclick="addToCart('NB 9060')">In winkelwagen</button>
                 </div>
             </div>
 
@@ -162,12 +210,16 @@
         let count = 0;
         function toggleCart() {
             const s = document.getElementById("cart-sidebar");
-            s.style.width = s.style.width === "300px" ? "0" : "300px";
+            s.style.width = (s.style.width === "350px") ? "0" : "350px";
         }
-        function addToCart() {
+
+        function addToCart(item) {
             count++;
             document.getElementById("cart-number").innerText = count;
-            alert("Toegevoegd!");
+            document.getElementById("empty-msg").style.display = "none";
+            const content = document.getElementById("cart-content");
+            content.innerHTML += `<p style="padding:10px 0; border-bottom:1px solid #eee; font-size:14px;"><strong>${item}</strong> toegevoegd</p>`;
+            toggleCart();
         }
     </script>
 </body>
