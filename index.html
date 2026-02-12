@@ -10,7 +10,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background-color: #fff; color: #111; overflow-x: hidden; }
 
-        /* NAVBAR - WIT */
+        /* NAVBAR */
         .navbar { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0 5%; height: 80px; background: #ffffff; 
@@ -35,31 +35,28 @@
         .hero { height: 100vh; width: 100%; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; }
         .loading-text { font-family: 'Syncopate'; font-size: clamp(2.5rem, 10vw, 5rem); letter-spacing: 12px; }
         .shop-now-btn { margin-top: 20px; padding: 18px 50px; background: white; color: black; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
-        .shop-now-btn:hover { background: #000; color: #fff; }
 
-        /* PRODUCTEN GRID */
+        /* PRODUCTEN */
         .products-section { padding: 100px 5%; background: white; }
-        .section-title { font-family: 'Syncopate'; margin-bottom: 60px; text-align: center; font-size: 1.4rem; }
         .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1300px; margin: 0 auto; }
         .product-card { display: flex; flex-direction: column; }
         .product-image-box { width: 100%; aspect-ratio: 1/1; background: #f8f8f8; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid #eee; }
         .product-image-box img { width: 85%; }
 
-        /* MAAT SELECTIE */
+        /* MAAT SELECTIE - NIEUWE TEKST STIJL */
         .size-select { 
             width: 100%; padding: 14px; border: 1px solid #ddd; margin-bottom: 15px; 
             font-family: 'Inter'; font-weight: 600; cursor: pointer; background: #fff;
         }
 
-        /* BUTTON & SUCCESS STATE */
+        /* BUTTON & GROENE MELDING */
         .add-to-cart { 
             width: 100%; padding: 18px; background: black; color: white; 
             border: none; font-weight: 800; cursor: pointer; text-transform: uppercase; 
-            transition: all 0.3s ease;
+            transition: 0.3s ease;
         }
         .add-to-cart.success { 
             background: #28a745 !important; 
-            color: white; 
         }
 
         @media (max-width: 950px) { .product-grid { grid-template-columns: 1fr 1fr; } }
@@ -86,7 +83,6 @@
     </header>
 
     <section id="shop" class="products-section">
-        <h2 class="section-title">BEST SELLERS</h2>
         <div class="product-grid">
             
             <div class="product-card">
@@ -95,7 +91,7 @@
                     <p style="font-weight:900;">ASICS GEL-NYC</p>
                     <p style="color:#666; margin-bottom:15px;">€160,00</p>
                     <select class="size-select">
-                        <option disabled selected>KIES JE MAAT</option>
+                        <option disabled selected>Kies je maat</option>
                         <option>37</option><option>38</option><option>39</option><option>40</option>
                         <option>41</option><option>42</option><option>43</option><option>44</option>
                     </select>
@@ -109,7 +105,7 @@
                     <p style="font-weight:900;">NIKE P-6000</p>
                     <p style="color:#666; margin-bottom:15px;">€110,00</p>
                     <select class="size-select">
-                        <option disabled selected>KIES JE MAAT</option>
+                        <option disabled selected>Kies je maat</option>
                         <option>37</option><option>38</option><option>39</option><option>40</option>
                         <option>41</option><option>42</option><option>43</option><option>44</option>
                     </select>
@@ -123,7 +119,7 @@
                     <p style="font-weight:900;">NB 9060 RAIN CLOUD</p>
                     <p style="color:#666; margin-bottom:15px;">€180,00</p>
                     <select class="size-select">
-                        <option disabled selected>KIES JE MAAT</option>
+                        <option disabled selected>Kies je maat</option>
                         <option>37</option><option>38</option><option>39</option><option>40</option>
                         <option>41</option><option>42</option><option>43</option><option>44</option>
                     </select>
@@ -138,23 +134,24 @@
         let count = 0;
 
         function addToCart(btn) {
-            // Check of maat geselecteerd is
             const select = btn.parentElement.querySelector('.size-select');
-            if(select.value === "KIES JE MAAT") {
-                alert("Kies eerst een maat!");
+            
+            // Als er geen maat is gekozen, doen we niks (of een kleine alert)
+            if(select.value === "Kies je maat") {
+                alert("Selecteer eerst je maat!");
                 return;
             }
 
-            // Update teller
+            // Teller updaten
             count++;
             document.getElementById("cart-number").innerText = count;
 
-            // Verander knop naar groen succes
+            // Knop naar groen en tekst aanpassen
             const originalText = btn.innerText;
-            btn.innerText = "TOEGEVOEGD IN JE WINKELMANDJE";
+            btn.innerText = "Toegevoegd in je winkelmandje";
             btn.classList.add('success');
 
-            // Zet na 2 seconden weer terug
+            // Na 2 seconden herstellen
             setTimeout(() => {
                 btn.innerText = originalText;
                 btn.classList.remove('success');
