@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VELOCITY | Exclusive Sneakers</title>
+    <title>VeloCity | Exclusive Sneakers</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         /* RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background-color: #fff; color: #111; overflow-x: hidden; }
 
-        /* NAVBAR */
+        /* NAVBAR - WIT */
         .navbar { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0 5%; height: 80px; background: #ffffff; 
@@ -21,7 +21,18 @@
         .nav-center { justify-content: center; }
         .nav-right { justify-content: flex-end; }
         .hamburger { font-size: 26px; color: #000; cursor: pointer; }
-        .logo { font-family: 'Syncopate'; font-size: 1.3rem; letter-spacing: 5px; color: #000; text-decoration: none; font-weight: 700; }
+        
+        /* LOGO AANGEPAST NAAR VeloCity */
+        .logo { 
+            font-family: 'Syncopate'; 
+            font-size: 1.3rem; 
+            letter-spacing: 2px; 
+            color: #000; 
+            text-decoration: none; 
+            font-weight: 700; 
+            text-transform: none; /* Zorgt dat VeloCity precies zo blijft staan */
+        }
+
         .cart-container { position: relative; cursor: pointer; color: #000; font-size: 24px; }
         .cart-badge { position: absolute; top: -5px; right: -10px; background: #000; color: #fff; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
@@ -33,31 +44,20 @@
 
         /* HERO */
         .hero { height: 100vh; width: 100%; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; }
-        .loading-text { font-family: 'Syncopate'; font-size: clamp(2.5rem, 10vw, 5rem); letter-spacing: 12px; }
+        .hero-title { font-family: 'Syncopate'; font-size: clamp(2.5rem, 10vw, 5rem); letter-spacing: 5px; text-transform: none; }
         .shop-now-btn { margin-top: 20px; padding: 18px 50px; background: white; color: black; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
 
-        /* PRODUCTEN */
+        /* PRODUCTEN GRID */
         .products-section { padding: 100px 5%; background: white; }
         .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1300px; margin: 0 auto; }
         .product-card { display: flex; flex-direction: column; }
         .product-image-box { width: 100%; aspect-ratio: 1/1; background: #f8f8f8; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid #eee; }
         .product-image-box img { width: 85%; }
 
-        /* MAAT SELECTIE - NIEUWE TEKST STIJL */
-        .size-select { 
-            width: 100%; padding: 14px; border: 1px solid #ddd; margin-bottom: 15px; 
-            font-family: 'Inter'; font-weight: 600; cursor: pointer; background: #fff;
-        }
+        .size-select { width: 100%; padding: 14px; border: 1px solid #ddd; margin-bottom: 15px; font-family: 'Inter'; font-weight: 600; cursor: pointer; background: #fff; }
 
-        /* BUTTON & GROENE MELDING */
-        .add-to-cart { 
-            width: 100%; padding: 18px; background: black; color: white; 
-            border: none; font-weight: 800; cursor: pointer; text-transform: uppercase; 
-            transition: 0.3s ease;
-        }
-        .add-to-cart.success { 
-            background: #28a745 !important; 
-        }
+        .add-to-cart { width: 100%; padding: 18px; background: black; color: white; border: none; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s ease; }
+        .add-to-cart.success { background: #28a745 !important; }
 
         @media (max-width: 950px) { .product-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 600px) { .product-grid { grid-template-columns: 1fr; } }
@@ -73,12 +73,12 @@
 
     <nav class="navbar">
         <div class="nav-left"><div class="hamburger" onclick="toggleMenu()">☰</div></div>
-        <div class="nav-center"><div class="logo">VELOCITY</div></div>
+        <div class="nav-center"><div class="logo">VeloCity</div></div>
         <div class="nav-right"><div class="cart-container">🛒<span id="cart-number" class="cart-badge">0</span></div></div>
     </nav>
 
     <header class="hero">
-        <h2 class="loading-text">VELOCITY</h2>
+        <h2 class="hero-title">VeloCity</h2>
         <button class="shop-now-btn" onclick="fastScroll()">SHOP NU</button>
     </header>
 
@@ -135,23 +135,15 @@
 
         function addToCart(btn) {
             const select = btn.parentElement.querySelector('.size-select');
-            
-            // Als er geen maat is gekozen, doen we niks (of een kleine alert)
             if(select.value === "Kies je maat") {
                 alert("Selecteer eerst je maat!");
                 return;
             }
-
-            // Teller updaten
             count++;
             document.getElementById("cart-number").innerText = count;
-
-            // Knop naar groen en tekst aanpassen
             const originalText = btn.innerText;
             btn.innerText = "Toegevoegd in je winkelmandje";
             btn.classList.add('success');
-
-            // Na 2 seconden herstellen
             setTimeout(() => {
                 btn.innerText = originalText;
                 btn.classList.remove('success');
