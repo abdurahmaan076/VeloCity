@@ -1,18 +1,171 @@
-/* Zorg dat alle kaarten in de rij even hoog zijn */
+/* RESET & BASIS */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #fff; 
+    color: #111; 
+    overflow-x: hidden; 
+}
+
+/* NAVBAR */
+.navbar { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 5%; 
+    height: 80px; 
+    background: white; 
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
+    z-index: 1000; 
+    border-bottom: 1px solid #eee; 
+}
+
+.logo { 
+    font-family: 'Syncopate'; 
+    font-size: 1.1rem; 
+    letter-spacing: 3px; 
+}
+
+.hamburger { 
+    cursor: pointer; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 5px; 
+}
+
+.hamburger span { 
+    width: 22px; 
+    height: 2px; 
+    background: black; 
+}
+
+/* WINKELWAGEN ICOON & TELLER */
+.cart-container { 
+    position: relative; 
+    cursor: pointer; 
+}
+
+.cart-icon-emoji { 
+    font-size: 24px; 
+}
+
+.cart-badge { 
+    position: absolute; 
+    top: -5px; 
+    right: -8px; 
+    background: black; 
+    color: white; 
+    font-size: 10px; 
+    width: 18px; 
+    height: 18px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-weight: bold;
+}
+
+/* SIDEBARS (MENU & CART) */
+.side-nav, .cart-nav { 
+    height: 100%; 
+    width: 0; 
+    position: fixed; 
+    z-index: 2000; 
+    top: 0; 
+    background: white; 
+    transition: 0.4s ease; 
+    overflow: hidden; 
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+}
+
+.side-nav { left: 0; }
+.cart-nav { right: 0; }
+
+.menu-header { 
+    padding: 25px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    border-bottom: 1px solid #eee; 
+}
+
+.close-btn { 
+    cursor: pointer; 
+    font-size: 25px; 
+}
+
+/* HERO SECTIE */
+.hero { 
+    height: 80vh; 
+    background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), 
+    url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); 
+    background-size: cover; 
+    background-position: center; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: white; 
+    text-align: center; 
+    margin-top: 80px;
+}
+
+.loading-text { 
+    font-family: 'Syncopate'; 
+    animation: pulse 2s infinite; 
+    font-size: 3rem; 
+}
+
+@keyframes pulse { 
+    0%, 100% { opacity: 1; } 
+    50% { opacity: 0.3; } 
+}
+
+/* PRODUCT GRID - DIT REGELT DE GELIJKE MATEN */
+.products-section { 
+    padding: 80px 5%; 
+    text-align: center; 
+}
+
+.section-title { 
+    font-family: 'Syncopate'; 
+    margin-bottom: 40px; 
+    letter-spacing: 2px; 
+}
+
 .product-grid { 
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
     gap: 30px; 
     max-width: 1200px; 
     margin: 0 auto; 
-    align-items: stretch; /* Dwingt kaarten tot dezelfde lengte */
+    align-items: stretch; /* Dwingt kaarten tot dezelfde hoogte */
 }
 
-/* Dwing de afbeelding-container in een perfect vierkant */
+.product-card { 
+    display: flex; 
+    flex-direction: column; 
+    background: #fff; 
+    padding: 10px; 
+    border: 1px solid transparent;
+    transition: 0.3s; 
+}
+
+.product-card:hover {
+    border-color: #eee;
+}
+
+/* AFBEELDINGEN ALTIJD 1:1 VIERKANT */
 .product-image { 
     background: #f6f6f6; 
     width: 100%;
-    aspect-ratio: 1 / 1; /* Dit maakt het een perfect vierkant */
+    aspect-ratio: 1 / 1; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
@@ -21,21 +174,94 @@
     overflow: hidden;
 }
 
-/* Zorg dat de schoen de container vult zonder te vervormen */
 .product-image img { 
     width: 100%; 
     height: 100%; 
-    object-fit: contain; /* Houdt de schoen heel, maar vult het vlak */
-    transition: 0.3s ease;
+    object-fit: contain; /* Zorgt dat de foto niet vervormt */
 }
 
-/* Maak de informatieblokken ook gelijk */
-.product-info {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.product-info { 
+    flex-grow: 1; /* Neemt alle resterende ruimte in */
+    display: flex; 
+    flex-direction: column; 
+    text-align: left; 
 }
 
-.add-to-cart {
-    margin-top: auto; /* Drukt de knop altijd naar de bodem, zodat ze op één lijn staan */
+.brand { 
+    font-size: 11px; 
+    color: #888; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+}
+
+.model { 
+    font-weight: 700; 
+    margin: 5px 0; 
+    min-height: 40px; /* Zorgt dat namen op 2 regels de rest niet verschuiven */
+}
+
+.price { 
+    font-weight: 400; 
+    margin-bottom: 15px; 
+}
+
+.size-select { 
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border: 1px solid #ddd; 
+    font-family: 'Inter'; 
+    outline: none;
+}
+
+/* KNOPPEN ALTIJD ONDERAAN DE KAART */
+.add-to-cart { 
+    margin-top: auto; 
+    width: 100%; 
+    padding: 12px; 
+    background: black; 
+    color: white; 
+    border: none; 
+    font-weight: 700; 
+    cursor: pointer; 
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+
+.add-to-cart:hover {
+    background: #333;
+}
+
+/* CART ITEMS & FOOTER */
+.cart-content { 
+    padding: 20px; 
+}
+
+.cart-item-row { 
+    padding: 15px 0; 
+    border-bottom: 1px solid #eee; 
+    font-size: 14px; 
+}
+
+.checkout-btn { 
+    width: 90%; 
+    margin: 5%; 
+    padding: 15px; 
+    background: black; 
+    color: white; 
+    border: none; 
+    position: absolute; 
+    bottom: 0; 
+    font-weight: bold; 
+    cursor: pointer; 
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 900px) {
+    .product-grid { 
+        grid-template-columns: 1fr; 
+    }
+    .loading-text { 
+        font-size: 2rem; 
+    }
 }
