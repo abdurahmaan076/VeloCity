@@ -6,28 +6,21 @@
     <title>VELOCITY | Exclusive Sneakers</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* ALLES RESETTEN */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #fff; 
-            color: #111;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #fff; color: #111; }
 
-        /* NAVBAR - DOORZICHTIG OVER DE FOTO */
+        /* NAVBAR */
         .navbar { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0 5%; height: 80px; 
-            background: rgba(255, 255, 255, 0.1); /* Subtiel doorzichtig */
-            backdrop-filter: blur(10px); /* Modern glaseffect */
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(10px);
             position: fixed; width: 100%; top: 0; z-index: 1000; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .logo { font-family: 'Syncopate'; font-size: 1.2rem; letter-spacing: 4px; color: white; }
 
-        /* WINKELWAGEN ICOON */
-        .cart-container { position: relative; cursor: pointer; color: white; }
+        /* WINKELWAGEN */
+        .cart-container { position: relative; cursor: pointer; color: white; font-size: 24px; }
         .cart-badge { 
             position: absolute; top: -5px; right: -10px; 
             background: white; color: black; font-size: 10px; 
@@ -35,15 +28,14 @@
             display: flex; align-items: center; justify-content: center; font-weight: bold;
         }
 
-        /* HERO SECTIE - DEZE MOET 100% ZIJN */
+        /* HERO SECTIE (100% HOOGTE) */
         .hero { 
-            height: 100vh; /* Volledige schermhoogte */
+            height: 100vh; 
             width: 100%;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                         url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); 
             background-size: cover; 
             background-position: center; 
-            background-attachment: fixed; /* Parallax effect */
             display: flex; 
             flex-direction: column;
             align-items: center; 
@@ -54,10 +46,27 @@
         .loading-text { font-family: 'Syncopate'; animation: pulse 2s infinite; font-size: clamp(2rem, 8vw, 4rem); letter-spacing: 10px; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
 
+        /* DE SHOP NU KNOP (HERSTELD) */
+        .shop-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: white;
+            color: black;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            border: 2px solid white;
+        }
+        .shop-btn:hover {
+            background: transparent;
+            color: white;
+        }
+
         /* PRODUCTEN GRID */
         .products-section { padding: 100px 5%; background: white; }
-        .section-title { font-family: 'Syncopate'; margin-bottom: 60px; text-align: center; font-size: 1.5rem; }
-        
         .product-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -66,17 +75,16 @@
             margin: 0 auto;
         }
 
-        /* DE PRODUCT KAARTEN - PERFECT GELIJK */
+        /* KAARTEN GELIJKE MATEN */
         .product-card { 
             display: flex; 
             flex-direction: column; 
             background: #fff;
-            transition: transform 0.3s ease;
         }
 
         .product-image-box { 
             width: 100%; 
-            aspect-ratio: 1 / 1; /* Perfect vierkant */
+            aspect-ratio: 1 / 1; 
             background: #f1f1f1; 
             display: flex; 
             align-items: center; 
@@ -84,36 +92,20 @@
             overflow: hidden;
             margin-bottom: 20px;
         }
-        .product-image-box img { 
-            width: 80%; 
-            object-fit: contain;
-        }
+        .product-image-box img { width: 80%; object-fit: contain; }
 
-        .product-info { 
-            flex-grow: 1; 
-            display: flex; 
-            flex-direction: column;
-        }
+        .product-info { flex-grow: 1; display: flex; flex-direction: column; }
         .model { font-weight: 900; font-size: 1.1rem; text-transform: uppercase; margin-bottom: 5px; }
         .price { color: #666; margin-bottom: 20px; }
 
-        .size-select { 
-            width: 100%; padding: 12px; border: 1px solid #eee; 
-            margin-bottom: 10px; font-family: 'Inter'; cursor: pointer;
-        }
+        .size-select { width: 100%; padding: 12px; border: 1px solid #eee; margin-bottom: 10px; font-family: 'Inter'; }
         
         .add-to-cart { 
             width: 100%; padding: 15px; background: black; color: white; 
             border: none; font-weight: 700; cursor: pointer; text-transform: uppercase;
-            transition: 0.3s;
         }
-        .add-to-cart:hover { background: #333; }
 
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            .product-grid { grid-template-columns: 1fr; }
-            .hero { background-attachment: scroll; } /* Beter voor mobiel */
-        }
+        @media (max-width: 900px) { .product-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -131,45 +123,40 @@
 
     <header class="hero">
         <h2 class="loading-text">LOADING...</h2>
-        <p style="letter-spacing: 3px; font-weight: 300;">THE NEW STANDARD IN SNEAKERS</p>
+        <p style="letter-spacing: 3px; font-weight: 300; margin-top: 10px;">THE NEW STANDARD IN SNEAKERS</p>
+        <a href="#shop" class="shop-btn">SHOP NU</a>
     </header>
 
-    <section class="products-section">
-        <h2 class="section-title">BEST VERKOCHT</h2>
+    <section id="shop" class="products-section">
+        <h2 style="font-family: 'Syncopate'; text-align: center; margin-bottom: 50px;">BEST VERKOCHT</h2>
         <div class="product-grid">
             
             <div class="product-card">
-                <div class="product-image-box">
-                    <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg">
-                </div>
+                <div class="product-image-box"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg"></div>
                 <div class="product-info">
                     <p class="model">ASICS GEL-NYC</p>
                     <p class="price">€160,00</p>
-                    <select class="size-select"><option disabled selected>SELECTEER MAAT</option><option>40</option><option>42</option><option>44</option></select>
+                    <select class="size-select"><option disabled selected>MAAT</option><option>40</option><option>42</option><option>44</option></select>
                     <button class="add-to-cart" onclick="add()">TOEVOEGEN</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-image-box">
-                    <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/shopping.webp">
-                </div>
+                <div class="product-image-box"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/shopping.webp"></div>
                 <div class="product-info">
                     <p class="model">NIKE P-6000</p>
                     <p class="price">€110,00</p>
-                    <select class="size-select"><option disabled selected>SELECTEER MAAT</option><option>40</option><option>42</option><option>44</option></select>
+                    <select class="size-select"><option disabled selected>MAAT</option><option>40</option><option>42</option><option>44</option></select>
                     <button class="add-to-cart" onclick="add()">TOEVOEGEN</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-image-box">
-                    <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download%20(1).jpeg">
-                </div>
+                <div class="product-image-box"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download%20(1).jpeg"></div>
                 <div class="product-info">
                     <p class="model">NB 9060 RAIN CLOUD</p>
                     <p class="price">€180,00</p>
-                    <select class="size-select"><option disabled selected>SELECTEER MAAT</option><option>40</option><option>42</option><option>44</option></select>
+                    <select class="size-select"><option disabled selected>MAAT</option><option>40</option><option>42</option><option>44</option></select>
                     <button class="add-to-cart" onclick="add()">TOEVOEGEN</button>
                 </div>
             </div>
