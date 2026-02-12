@@ -4,17 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VELOCITY | Exclusive Sneakers</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* RESET & BASIS */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #fff; color: #111; overflow-x: hidden; }
+
+        /* NAVBAR */
+        .navbar { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 5%; height: 80px; background: white; 
+            position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #eee; 
+        }
+        .logo { font-family: 'Syncopate'; font-size: 1.1rem; letter-spacing: 3px; }
+        .hamburger { cursor: pointer; display: flex; flex-direction: column; gap: 5px; }
+        .hamburger span { width: 22px; height: 2px; background: black; }
+
+        /* WINKELWAGEN ICOON */
+        .cart-container { position: relative; cursor: pointer; }
+        .cart-icon-emoji { font-size: 24px; }
+        .cart-badge { 
+            position: absolute; top: -5px; right: -8px; 
+            background: black; color: white; font-size: 10px; 
+            width: 18px; height: 18px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; font-weight: bold;
+        }
+
+        /* ZIJBALKEN */
+        .side-nav, .cart-nav { 
+            height: 100%; width: 0; position: fixed; z-index: 2000; 
+            top: 0; background: white; transition: 0.4s ease; overflow: hidden; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+        }
+        .side-nav { left: 0; }
+        .cart-nav { right: 0; }
+        .menu-header { padding: 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+        .close-btn { cursor: pointer; font-size: 25px; }
+
+        /* HERO SECTIE */
+        .hero { 
+            height: 80vh; background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), 
+            url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); 
+            background-size: cover; background-position: center; 
+            display: flex; align-items: center; justify-content: center; color: white; text-align: center; 
+            margin-top: 80px;
+        }
+        .loading-text { font-family: 'Syncopate'; animation: pulse 2s infinite; font-size: 3rem; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* PRODUCTEN GRID - DE FIKS VOOR DE HOOGTE */
+        .products-section { padding: 80px 5%; text-align: center; }
+        .section-title { font-family: 'Syncopate'; margin-bottom: 40px; letter-spacing: 2px; }
+        
+        .product-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            align-items: stretch;
+        }
+
+        .product-card { 
+            display: flex; 
+            flex-direction: column; 
+            background: #fff; 
+            padding: 10px; 
+            transition: 0.3s; 
+        }
+
+        /* AFBEELDINGEN ALTIJD DEZELFDE MAAT (1:1) */
+        .product-image { 
+            background: #f6f6f6; 
+            width: 100%;
+            aspect-ratio: 1 / 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+            margin-bottom: 15px; 
+            overflow: hidden;
+        }
+
+        .product-image img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+        }
+
+        .product-info { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            text-align: left; 
+        }
+
+        .brand { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .model { font-weight: 700; margin: 5px 0; min-height: 40px; }
+        .price { font-weight: 400; margin-bottom: 15px; }
+
+        .size-select { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; font-family: 'Inter'; outline: none; }
+        
+        /* KNOPPEN ALTIJD ONDERAAN */
+        .add-to-cart { 
+            margin-top: auto; 
+            width: 100%; 
+            padding: 12px; 
+            background: black; 
+            color: white; 
+            border: none; 
+            font-weight: 700; 
+            cursor: pointer; 
+            text-transform: uppercase;
+        }
+
+        /* CART ITEMS */
+        .cart-content { padding: 20px; }
+        .cart-item-row { padding: 15px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+        .checkout-btn { width: 90%; margin: 5%; padding: 15px; background: black; color: white; border: none; position: absolute; bottom: 0; font-weight: bold; cursor: pointer; }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .loading-text { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="nav-left">
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
+        <div class="nav-left"><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div></div>
         <div class="nav-center"><h1 class="logo">VELOCITY</h1></div>
         <div class="nav-right">
             <div class="cart-container" onclick="toggleCart()">
@@ -25,22 +144,18 @@
     </nav>
 
     <div id="side-menu" class="side-nav">
-        <span class="close-btn" onclick="toggleMenu()">&times;</span>
-        <ul class="menu-list">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Collectie</a></li>
-            <li><a href="#">Over Ons</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
+        <div class="menu-header"><span class="close-btn" onclick="toggleMenu()">&times;</span></div>
+        <div style="padding: 20px;">
+            <p><a href="#" style="text-decoration:none; color:black; font-weight:bold; display:block; padding:15px 0; border-bottom: 1px solid #eee;">HOME</a></p>
+            <p><a href="#" style="text-decoration:none; color:black; font-weight:bold; display:block; padding:15px 0; border-bottom: 1px solid #eee;">COLLECTIE</a></p>
+            <p><a href="#" style="text-decoration:none; color:black; font-weight:bold; display:block; padding:15px 0; border-bottom: 1px solid #eee;">CONTACT</a></p>
+        </div>
     </div>
 
     <div id="cart-sidebar" class="cart-nav">
-        <div class="menu-header">
-            <h3>JOUW CART</h3>
-            <span class="close-btn" onclick="toggleCart()">&times;</span>
-        </div>
+        <div class="menu-header"><h3>JOUW CART</h3><span class="close-btn" onclick="toggleCart()">&times;</span></div>
         <div id="cart-items-list" class="cart-content">
-            <p class="empty-msg">Je winkelwagen is leeg.</p>
+            <p style="color:#888; text-align:center; margin-top:50px;">Je winkelwagen is leeg.</p>
         </div>
         <button class="checkout-btn">AFREKENEN</button>
     </div>
@@ -49,67 +164,76 @@
         <div class="hero-content">
             <h2 class="loading-text">LOADING...</h2>
             <p>De meest exclusieve sneakers van dit moment.</p>
-            <a href="#shop" class="btn">SHOP NU</a>
         </div>
     </header>
 
-    <section id="shop" class="products-section">
-        <h2 class="section-title">BEST VERKOCHT</h2>
+    <section class="products-section">
+        <h2 class="section-title">Best verkocht</h2>
         <div class="product-grid">
+            
             <div class="product-card">
                 <div class="product-image"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg"></div>
                 <div class="product-info">
-                    <p class="brand">ASICS</p>
-                    <p class="model">GEL-NYC Graphite</p>
+                    <span class="brand">Asics</span>
+                    <p class="model">GEL-NYC Graphite Grey</p>
                     <p class="price">€160,00</p>
                     <select class="size-select"><option value="" disabled selected>Maat</option><option>40</option><option>42</option><option>44</option></select>
                     <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
                 </div>
             </div>
+
             <div class="product-card">
                 <div class="product-image"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/shopping.webp"></div>
                 <div class="product-info">
-                    <p class="brand">NIKE</p>
-                    <p class="model">P-6000 Black</p>
+                    <span class="brand">Nike</span>
+                    <p class="model">P-6000 Black/Chrome</p>
                     <p class="price">€110,00</p>
                     <select class="size-select"><option value="" disabled selected>Maat</option><option>40</option><option>42</option><option>44</option></select>
                     <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
                 </div>
             </div>
+
             <div class="product-card">
                 <div class="product-image"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download%20(1).jpeg"></div>
                 <div class="product-info">
-                    <p class="brand">NEW BALANCE</p>
+                    <span class="brand">New Balance</span>
                     <p class="model">9060 Rain Cloud</p>
                     <p class="price">€180,00</p>
                     <select class="size-select"><option value="" disabled selected>Maat</option><option>40</option><option>42</option><option>44</option></select>
                     <button class="add-to-cart" onclick="addToCart(this)">In winkelwagen</button>
                 </div>
             </div>
+
         </div>
     </section>
 
     <script>
         let cartCount = 0;
+
         function toggleMenu() {
             const m = document.getElementById("side-menu");
             m.style.width = (m.style.width === "280px") ? "0" : "280px";
         }
+
         function toggleCart() {
             const c = document.getElementById("cart-sidebar");
             c.style.width = (c.style.width === "320px") ? "0" : "320px";
         }
+
         function addToCart(btn) {
             const card = btn.parentElement;
             const model = card.querySelector(".model").innerText;
             const size = card.querySelector(".size-select").value;
-            if(!size) { alert("Selecteer een maat!"); return; }
-            
+
+            if(!size) return alert("Kies eerst een maat!");
+
             cartCount++;
             document.getElementById("cart-number").innerText = cartCount;
+            
             const list = document.getElementById("cart-items-list");
             if(cartCount === 1) list.innerHTML = "";
-            list.innerHTML += `<div style="padding:10px; border-bottom:1px solid #eee;"><strong>${model}</strong> - Maat ${size}</div>`;
+            list.innerHTML += `<div class="cart-item-row"><strong>${model}</strong> - Maat ${size}</div>`;
+            
             toggleCart();
         }
     </script>
