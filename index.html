@@ -6,17 +6,9 @@
     <title>VELOCITY | Exclusive Sneakers</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* ALLES RESETTEN */
+        /* BASIS */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        /* SMOOTH SCROLLING */
-        html { scroll-behavior: smooth; }
-
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #fff; 
-            color: #111;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #fff; color: #111; }
 
         /* NAVBAR */
         .navbar { 
@@ -28,8 +20,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .logo { font-family: 'Syncopate'; font-size: 1.2rem; letter-spacing: 4px; color: white; }
-
-        .cart-container { position: relative; cursor: pointer; color: white; }
+        .cart-container { position: relative; cursor: pointer; color: white; font-size: 20px; }
         .cart-badge { 
             position: absolute; top: -5px; right: -10px; 
             background: white; color: black; font-size: 10px; 
@@ -45,7 +36,6 @@
                         url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); 
             background-size: cover; 
             background-position: center; 
-            background-attachment: fixed; 
             display: flex; 
             flex-direction: column;
             align-items: center; 
@@ -53,17 +43,9 @@
             color: white; 
             text-align: center;
         }
+        .loading-text { font-family: 'Syncopate'; font-size: clamp(2rem, 8vw, 4rem); letter-spacing: 10px; }
 
-        .loading-text { 
-            font-family: 'Syncopate'; 
-            animation: pulse 2s infinite; 
-            font-size: clamp(2rem, 8vw, 4rem); 
-            letter-spacing: 10px; 
-        }
-
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
-
-        /* SHOP NU KNOP MET ANIMATIE */
+        /* SHOP NU KNOP */
         .shop-now-btn {
             margin-top: 30px;
             padding: 15px 40px;
@@ -75,27 +57,10 @@
             text-transform: uppercase;
             font-size: 0.8rem;
             border: 2px solid white;
-            
-            /* Animatie settings */
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards;
-            animation-delay: 0.5s; /* Begint iets later */
-            transition: all 0.3s ease;
+            transition: 0.3s;
+            cursor: pointer;
         }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .shop-now-btn:hover {
-            background-color: transparent;
-            color: white;
-            transform: scale(1.05); /* Kleine zoom bij hover */
-        }
+        .shop-now-btn:hover { background: transparent; color: white; }
 
         /* PRODUCTEN GRID */
         .products-section { padding: 100px 5%; background: white; }
@@ -109,16 +74,7 @@
             margin: 0 auto;
         }
 
-        .product-card { 
-            display: flex; 
-            flex-direction: column; 
-            background: #fff;
-            transition: transform 0.4s ease;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px); /* Kaart komt iets omhoog */
-        }
+        .product-card { display: flex; flex-direction: column; background: #fff; }
 
         .product-image-box { 
             width: 100%; 
@@ -130,35 +86,20 @@
             overflow: hidden;
             margin-bottom: 20px;
         }
-        .product-image-box img { 
-            width: 80%; 
-            object-fit: contain;
-        }
+        .product-image-box img { width: 80%; object-fit: contain; }
 
-        .product-info { 
-            flex-grow: 1; 
-            display: flex; 
-            flex-direction: column;
-        }
+        .product-info { flex-grow: 1; display: flex; flex-direction: column; }
         .model { font-weight: 900; font-size: 1.1rem; text-transform: uppercase; margin-bottom: 5px; }
         .price { color: #666; margin-bottom: 20px; }
 
-        .size-select { 
-            width: 100%; padding: 12px; border: 1px solid #eee; 
-            margin-bottom: 10px; font-family: 'Inter'; cursor: pointer;
-        }
+        .size-select { width: 100%; padding: 12px; border: 1px solid #eee; margin-bottom: 10px; font-family: 'Inter'; }
         
         .add-to-cart { 
             width: 100%; padding: 15px; background: black; color: white; 
             border: none; font-weight: 700; cursor: pointer; text-transform: uppercase;
-            transition: 0.3s;
         }
-        .add-to-cart:hover { background: #333; }
 
-        @media (max-width: 900px) {
-            .product-grid { grid-template-columns: 1fr; }
-            .hero { background-attachment: scroll; }
-        }
+        @media (max-width: 900px) { .product-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -177,7 +118,7 @@
     <header class="hero">
         <h2 class="loading-text">LOADING...</h2>
         <p style="letter-spacing: 3px; font-weight: 300;">THE NEW STANDARD IN SNEAKERS</p>
-        <a href="#shop" class="shop-now-btn">SHOP NU</a>
+        <button class="shop-now-btn" onclick="fastScroll()">SHOP NU</button>
     </header>
 
     <section id="shop" class="products-section">
@@ -185,37 +126,31 @@
         <div class="product-grid">
             
             <div class="product-card">
-                <div class="product-image-box">
-                    <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg">
-                </div>
+                <div class="product-image-box"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg"></div>
                 <div class="product-info">
                     <p class="model">ASICS GEL-NYC</p>
                     <p class="price">€160,00</p>
-                    <select class="size-select"><option disabled selected>SELECTEER MAAT</option><option>40</option><option>42</option><option>44</option></select>
+                    <select class="size-select"><option disabled selected>MAAT</option><option>40</option><option>42</option><option>44</option></select>
                     <button class="add-to-cart" onclick="add()">TOEVOEGEN</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-image-box">
-                    <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/shopping.webp">
-                </div>
+                <div class="product-image-box"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/shopping.webp"></div>
                 <div class="product-info">
                     <p class="model">NIKE P-6000</p>
                     <p class="price">€110,00</p>
-                    <select class="size-select"><option disabled selected>SELECTEER MAAT</option><option>40</option><option>42</option><option>44</option></select>
+                    <select class="size-select"><option disabled selected>MAAT</option><option>40</option><option>42</option><option>44</option></select>
                     <button class="add-to-cart" onclick="add()">TOEVOEGEN</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-image-box">
-                    <img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download%20(1).jpeg">
-                </div>
+                <div class="product-image-box"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download%20(1).jpeg"></div>
                 <div class="product-info">
                     <p class="model">NB 9060 RAIN CLOUD</p>
                     <p class="price">€180,00</p>
-                    <select class="size-select"><option disabled selected>SELECTEER MAAT</option><option>40</option><option>42</option><option>44</option></select>
+                    <select class="size-select"><option disabled selected>MAAT</option><option>40</option><option>42</option><option>44</option></select>
                     <button class="add-to-cart" onclick="add()">TOEVOEGEN</button>
                 </div>
             </div>
@@ -228,6 +163,15 @@
         function add() {
             c++;
             document.getElementById("cart-number").innerText = c;
+        }
+
+        // Snelle scroll functie
+        function fastScroll() {
+            const shopSection = document.getElementById('shop');
+            window.scrollTo({
+                top: shopSection.offsetTop,
+                behavior: 'smooth'
+            });
         }
     </script>
 </body>
