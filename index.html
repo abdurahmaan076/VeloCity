@@ -10,7 +10,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background-color: #fff; color: #111; overflow-x: hidden; }
 
-        /* NAVBAR - WIT */
+        /* NAVBAR */
         .navbar { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0 5%; height: 80px; background: #ffffff; 
@@ -21,17 +21,7 @@
         .nav-center { justify-content: center; }
         .nav-right { justify-content: flex-end; }
         .hamburger { font-size: 26px; color: #000; cursor: pointer; }
-        
-        /* LOGO AANGEPAST NAAR VeloCity */
-        .logo { 
-            font-family: 'Syncopate'; 
-            font-size: 1.3rem; 
-            letter-spacing: 2px; 
-            color: #000; 
-            text-decoration: none; 
-            font-weight: 700; 
-            text-transform: none; /* Zorgt dat VeloCity precies zo blijft staan */
-        }
+        .logo { font-family: 'Syncopate'; font-size: 1.2rem; color: #000; text-decoration: none; font-weight: 700; text-transform: none; letter-spacing: -1px; }
 
         .cart-container { position: relative; cursor: pointer; color: #000; font-size: 24px; }
         .cart-badge { position: absolute; top: -5px; right: -10px; background: #000; color: #fff; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
@@ -42,19 +32,28 @@
         .side-menu a { display: block; color: black; text-decoration: none; font-family: 'Syncopate'; font-size: 1.8rem; margin-bottom: 30px; }
         .close-menu { position: absolute; top: 25px; left: 5%; font-size: 40px; cursor: pointer; }
 
-        /* HERO */
+        /* HERO - FIX VOOR HET GAT TUSSEN L EN O */
         .hero { height: 100vh; width: 100%; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; }
-        .hero-title { font-family: 'Syncopate'; font-size: clamp(2.5rem, 10vw, 5rem); letter-spacing: 5px; text-transform: none; }
-        .shop-now-btn { margin-top: 20px; padding: 18px 50px; background: white; color: black; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        
+        .hero-title { 
+            font-family: 'Syncopate'; 
+            font-size: clamp(2.5rem, 10vw, 5.5rem); 
+            letter-spacing: -2px; /* Negatieve spacing haalt het gat weg */
+            text-transform: none; 
+            font-weight: 700;
+        }
 
-        /* PRODUCTEN GRID */
+        .shop-now-btn { margin-top: 25px; padding: 18px 50px; background: white; color: black; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        .shop-now-btn:hover { background: #000; color: #fff; }
+
+        /* PRODUCTEN */
         .products-section { padding: 100px 5%; background: white; }
         .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1300px; margin: 0 auto; }
         .product-card { display: flex; flex-direction: column; }
         .product-image-box { width: 100%; aspect-ratio: 1/1; background: #f8f8f8; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid #eee; }
         .product-image-box img { width: 85%; }
 
-        .size-select { width: 100%; padding: 14px; border: 1px solid #ddd; margin-bottom: 15px; font-family: 'Inter'; font-weight: 600; cursor: pointer; background: #fff; }
+        .size-select { width: 100%; padding: 14px; border: 1px solid #ddd; margin-bottom: 15px; font-family: 'Inter'; font-weight: 600; cursor: pointer; background: #fff; border-radius: 0; }
 
         .add-to-cart { width: 100%; padding: 18px; background: black; color: white; border: none; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s ease; }
         .add-to-cart.success { background: #28a745 !important; }
@@ -78,13 +77,12 @@
     </nav>
 
     <header class="hero">
-        <h2 class="hero-title">VeloCity</h2>
+        <h1 class="hero-title">VeloCity</h1>
         <button class="shop-now-btn" onclick="fastScroll()">SHOP NU</button>
     </header>
 
     <section id="shop" class="products-section">
         <div class="product-grid">
-            
             <div class="product-card">
                 <div class="product-image-box"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg"></div>
                 <div class="product-info">
@@ -126,13 +124,11 @@
                     <button class="add-to-cart" onclick="addToCart(this)">TOEVOEGEN</button>
                 </div>
             </div>
-
         </div>
     </section>
 
     <script>
         let count = 0;
-
         function addToCart(btn) {
             const select = btn.parentElement.querySelector('.size-select');
             if(select.value === "Kies je maat") {
