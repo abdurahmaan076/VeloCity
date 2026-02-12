@@ -4,49 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VELOCITY | Exclusive Sneakers</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         /* RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background-color: #fff; color: #111; overflow-x: hidden; }
 
-        /* NAVBAR - NU WIT MET ZWARTEO CONTENT */
+        /* NAVBAR - VOLLEDIG WIT */
         .navbar { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             padding: 0 5%; 
             height: 80px; 
-            background: white; /* Navbar is nu wit */
+            background: #ffffff; 
             position: fixed; 
             width: 100%; 
             top: 0; 
             z-index: 1000; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Subtiele schaduw voor diepte */
+            border-bottom: 1px solid #f0f0f0;
         }
         
         .nav-left, .nav-center, .nav-right { flex: 1; display: flex; align-items: center; }
         .nav-center { justify-content: center; }
         .nav-right { justify-content: flex-end; }
 
-        /* HAMBURGER - NU ZWART */
         .hamburger { 
-            font-size: 28px; 
+            font-size: 26px; 
             color: #000; 
             cursor: pointer; 
-            z-index: 1100;
+            transition: 0.2s;
         }
+        .hamburger:hover { opacity: 0.6; }
 
-        /* LOGO - NU ZWART */
         .logo { 
             font-family: 'Syncopate'; 
-            font-size: 1.2rem; 
-            letter-spacing: 4px; 
+            font-size: 1.3rem; 
+            letter-spacing: 5px; 
             color: #000; 
             text-decoration: none;
+            font-weight: 700;
         }
 
-        /* CART - NU ZWART */
         .cart-container { position: relative; cursor: pointer; color: #000; font-size: 24px; }
         .cart-badge { 
             position: absolute; top: -5px; right: -10px; 
@@ -58,12 +57,12 @@
         /* SIDE MENU */
         .side-menu {
             position: fixed; top: 0; left: -100%; width: 100%; height: 100vh;
-            background: white; color: black; z-index: 2000;
+            background: #fff; color: #000; z-index: 2000;
             transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
         .side-menu.active { left: 0; }
-        .side-menu a { display: block; color: black; text-decoration: none; font-family: 'Syncopate'; font-size: 2rem; margin-bottom: 30px; }
+        .side-menu a { display: block; color: black; text-decoration: none; font-family: 'Syncopate'; font-size: 1.8rem; margin-bottom: 30px; }
         .close-menu { position: absolute; top: 25px; left: 5%; font-size: 40px; cursor: pointer; }
 
         /* HERO SECTIE */
@@ -73,29 +72,68 @@
                         url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070'); 
             background-size: cover; background-position: center; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center;
-            padding-top: 80px; /* Ruimte voor de navbar */
+            padding-top: 80px;
         }
         .loading-text { font-family: 'Syncopate'; font-size: clamp(2.5rem, 10vw, 5rem); letter-spacing: 12px; margin-bottom: 10px; }
         .hero p { letter-spacing: 4px; font-weight: 300; margin-bottom: 35px; text-transform: uppercase; font-size: 0.9rem; }
 
-        /* SHOP NU KNOP */
         .shop-now-btn {
             padding: 18px 50px; background: white; color: black; border: none;
             font-weight: 900; letter-spacing: 2px; text-transform: uppercase; 
-            font-size: 0.9rem; cursor: pointer; transition: 0.2s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-size: 0.9rem; cursor: pointer; transition: 0.3s;
         }
-        .shop-now-btn:hover { background: #000; color: #fff; transform: scale(1.05); }
+        .shop-now-btn:hover { background: #000; color: #fff; }
 
         /* PRODUCTEN GRID */
         .products-section { padding: 100px 5%; background: white; }
         .section-title { font-family: 'Syncopate'; margin-bottom: 60px; text-align: center; font-size: 1.4rem; }
         .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1300px; margin: 0 auto; }
+        
         .product-card { display: flex; flex-direction: column; }
-        .product-image-box { width: 100%; aspect-ratio: 1/1; background: #f4f4f4; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden; }
-        .product-image-box img { width: 80%; transition: 0.4s; }
-        .product-card:hover img { transform: scale(1.1); }
-        .add-to-cart { width: 100%; padding: 15px; background: black; color: white; border: none; font-weight: 800; cursor: pointer; }
+        .product-image-box { 
+            width: 100%; aspect-ratio: 1/1; background: #f8f8f8; 
+            display: flex; align-items: center; justify-content: center; margin-bottom: 20px; 
+            overflow: hidden; border: 1px solid #f0f0f0;
+        }
+        .product-image-box img { width: 85%; transition: 0.5s ease; }
+        .product-card:hover img { transform: scale(1.05); }
+
+        .product-info { padding: 5px; }
+        .model { font-weight: 900; font-size: 1.1rem; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0.5px; }
+        .price { color: #666; margin-bottom: 20px; font-size: 1rem; }
+
+        /* MAAT SELECTIE STYLING */
+        .size-container { margin-bottom: 15px; }
+        .size-select { 
+            width: 100%; 
+            padding: 14px; 
+            border: 1px solid #e0e0e0; 
+            background-color: #fff;
+            font-family: 'Inter'; 
+            font-size: 0.9rem;
+            font-weight: 600;
+            appearance: none; /* Verwijdert standaard browser pijltje */
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        .size-select:focus { outline: none; border-color: #000; }
+
+        .add-to-cart { 
+            width: 100%; 
+            padding: 18px; 
+            background: black; 
+            color: white; 
+            border: none; 
+            font-weight: 800; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .add-to-cart:hover { background: #333; }
 
         @media (max-width: 950px) { .product-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 600px) { .product-grid { grid-template-columns: 1fr; } }
@@ -134,30 +172,55 @@
     <section id="shop" class="products-section">
         <h2 class="section-title">BEST SELLERS</h2>
         <div class="product-grid">
+            
             <div class="product-card">
                 <div class="product-image-box"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download.jpeg"></div>
                 <div class="product-info">
-                    <p class="model" style="font-weight:900;">ASICS GEL-NYC</p>
+                    <p class="model">ASICS GEL-NYC</p>
                     <p class="price">€160,00</p>
+                    <div class="size-container">
+                        <select class="size-select">
+                            <option disabled selected>KIES JE MAAT</option>
+                            <option>37</option><option>38</option><option>39</option><option>40</option>
+                            <option>41</option><option>42</option><option>43</option><option>44</option>
+                        </select>
+                    </div>
                     <button class="add-to-cart" onclick="add()">TOEVOEGEN</button>
                 </div>
             </div>
+
             <div class="product-card">
                 <div class="product-image-box"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/shopping.webp"></div>
                 <div class="product-info">
-                    <p class="model" style="font-weight:900;">NIKE P-6000</p>
+                    <p class="model">NIKE P-6000</p>
                     <p class="price">€110,00</p>
+                    <div class="size-container">
+                        <select class="size-select">
+                            <option disabled selected>KIES JE MAAT</option>
+                            <option>37</option><option>38</option><option>39</option><option>40</option>
+                            <option>41</option><option>42</option><option>43</option><option>44</option>
+                        </select>
+                    </div>
                     <button class="add-to-cart" onclick="add()">TOEVOEGEN</button>
                 </div>
             </div>
+
             <div class="product-card">
                 <div class="product-image-box"><img src="https://raw.githubusercontent.com/abdurahmaan076/VeloCity/main/download%20(1).jpeg"></div>
                 <div class="product-info">
-                    <p class="model" style="font-weight:900;">NB 9060 RAIN CLOUD</p>
+                    <p class="model">NB 9060 RAIN CLOUD</p>
                     <p class="price">€180,00</p>
+                    <div class="size-container">
+                        <select class="size-select">
+                            <option disabled selected>KIES JE MAAT</option>
+                            <option>37</option><option>38</option><option>39</option><option>40</option>
+                            <option>41</option><option>42</option><option>43</option><option>44</option>
+                        </select>
+                    </div>
                     <button class="add-to-cart" onclick="add()">TOEVOEGEN</button>
                 </div>
             </div>
+
         </div>
     </section>
 
